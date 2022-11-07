@@ -1,2 +1,2 @@
 # Programmazione2
- Caso di studio per esame
+Caso di studio per esame pratico
