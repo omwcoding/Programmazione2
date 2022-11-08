@@ -1,4 +1,3 @@
 # Programmazione2
-Caso di studio per esame pratico
-prova prova     
-sasa
+
+Qui andrà la traccia del caso di studio del corso Programmazione 2
