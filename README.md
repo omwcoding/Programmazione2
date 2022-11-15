@@ -1,6 +1,7 @@
 # Programmazione2
+CONSISTE IN DUE ESAMI:
 
-Esame: caso di studio
+Caso di studio
 - Realizzazione individuale (un solo studente).
 - La valutazione verterà su completezza, correttezza e qualità complessiva di quanto realizzato
 - La valutazione sarà espressa in trentesimi
@@ -10,11 +11,11 @@ Esame: caso di studio
 - Obbligatorietà per valutazione: prenotazione mediante la piattaforma Esse3
 - Trattasi di una prova parziale
 
-Esame: prova di laboratorio
-ð Consiste nel realizzare un programma scritto in JAVA, rispondente al problema riportato nella traccia data, applicando i concetti appresi durante le lezioni.
+Prova di laboratorio
+-  Consiste nel realizzare un programma scritto in JAVA, rispondente al problema riportato nella traccia data, applicando i concetti appresi durante le lezioni.
 - punteggio massimo: 30;
 - tempo: 90 minuti
 - Luogo di svolgimento prova scritta: laboratori didattici del Dipartimento di Informatica
 - Obbligatorietà: prenotazione mediante la piattaforma Esse3
 - Obiettivo: Lo studente dovrà mostrare sia di aver acquisito i concetti sia di saperli applicare utilizzando i metodi, le tecniche, gli strumenti presentati a lezione
-- trattasi di una prova parziale
+- Trattasi di una prova parziale
