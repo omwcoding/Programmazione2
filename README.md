@@ -1,5 +1,5 @@
 # Programmazione2
-CONSISTE IN DUE ESAMI:
+DUE ESAMI:
 
 Caso di studio
 - Realizzazione individuale (un solo studente).
