@@ -1,0 +1,74 @@
+public class Kart {
+    private String marca;
+    private String tipo; // "base", "medio", "avanzato"
+    private String numeroDiSerie;
+    private boolean cambioAutomatico;
+    private boolean freniADisco;
+    private boolean contachilometri;
+
+    public Kart(String marca, String tipo, String numeroDiSerie) {
+        this.marca = marca;
+        this.tipo = tipo;
+        this.numeroDiSerie = numeroDiSerie;
+        this.cambioAutomatico = false;
+        this.freniADisco = false;
+        this.contachilometri = false;
+
+        if (tipo.equals("medio")) {
+            this.cambioAutomatico = true;
+        } else if (tipo.equals("avanzato")) {
+            this.cambioAutomatico = true;
+            this.freniADisco = true;
+            this.contachilometri = true;
+        }
+    }
+    // getters and setters for all fields
+}
+
+public class Noleggio {
+    private LocalDate dataInizio;
+    private LocalDate dataFine;
+    private double costo;
+    private double penalePerRitardo;
+    private Kart kart;
+    private Cliente cliente;
+
+    public Noleggio(LocalDate dataInizio, LocalDate dataFine, Kart kart, Cliente cliente) {
+        this.dataInizio = dataInizio;
+        this.dataFine = dataFine;
+        this.kart = kart;
+        this.cliente = cliente;
+        this.costo = calcolaCosto();
+        this.penalePerRitardo = 0;
+    }
+
+    private double calcolaCosto() {
+        // calcola il costo in base alla data di inizio e fine e al tipo di kart noleggiato
+    }
+
+    public void calcolaPenalePerRitardo(LocalDate dataRestituzione) {
+        // calcola eventuale penale per ritardo in base alla data di restituzione e alla data di fine prevista
+    }
+    // getters and setters for all fields
+}
+
+public class Cliente {
+    private String nome;
+    private String cognome;
+    private String codiceFiscale;
+    private int numeroMassimoDiKartAlGiorno;
+    private List<Noleggio> noleggi;
+
+    public Cliente(String nome, String cognome, String codiceFiscale, int numeroMassimoDiKartAlGiorno) {
+        this.nome = nome;
+        this.cognome = cognome;
+        this.codiceFiscale = codiceFiscale;
+        this.numeroMassimoDiKartAlGiorno = numeroMassimoDiKartAlGiorno;
+        this.noleggi = new ArrayList<>();
+    }
+
+    public boolean noleggia(Kart kart, LocalDate dataInizio, LocalDate dataFine) {
+        // controlla se il cliente ha già noleggiato il numero massimo di kart al giorno
+        // controlla se il kart è disponibile per il periodo richiesto
+        // se entrambe le condizioni sono verificate, crea un nuovo noleggio e aggiungilo alla lista dei noleggi del cliente
+    }

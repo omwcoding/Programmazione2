@@ -1,4 +1,5 @@
-TRACCIA CASO DI STUDIO:
+## TRACCIA CASO DI STUDIO:
+
 Realizzare un’applicazione che permetta ad un’azienda di noleggiare dei go kart (in breve kart). I kart
 differiscono per marca e tipo. I tipi di kart sono i seguenti: base, medio, avanzato.
 
