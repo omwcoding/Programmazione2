@@ -1,28 +1,67 @@
 public class Kart {
     private String marca;
-    private String tipo; // "base", "medio", "avanzato"
-    private String numeroDiSerie;
-    private boolean cambioAutomatico;
-    private boolean freniADisco;
-    private boolean contachilometri;
+    private String tipo;
+    private boolean cambioAutomatico; // solo per kart di tipo medio
+    private boolean freniADisco; // solo per kart di tipo avanzato
+    private boolean contachilometri; // solo per kart di tipo avanzato
+    private String numeroSerie;
 
-    public Kart(String marca, String tipo, String numeroDiSerie) {
+    public Kart(String marca, String tipo, boolean cambioAutomatico, boolean freniADisco, boolean contachilometri, String numeroSerie) {
         this.marca = marca;
         this.tipo = tipo;
-        this.numeroDiSerie = numeroDiSerie;
-        this.cambioAutomatico = false;
-        this.freniADisco = false;
-        this.contachilometri = false;
-
-        if (tipo.equals("medio")) {
-            this.cambioAutomatico = true;
-        } else if (tipo.equals("avanzato")) {
-            this.cambioAutomatico = true;
-            this.freniADisco = true;
-            this.contachilometri = true;
-        }
+        this.cambioAutomatico = cambioAutomatico;
+        this.freniADisco = freniADisco;
+        this.contachilometri = contachilometri;
+        this.numeroSerie = numeroSerie;
     }
-    // getters and setters for all fields
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public boolean isCambioAutomatico() {
+        return cambioAutomatico;
+    }
+
+    public void setCambioAutomatico(boolean cambioAutomatico) {
+        this.cambioAutomatico = cambioAutomatico;
+    }
+
+    public boolean isFreniADisco() {
+        return freniADisco;
+    }
+
+    public void setFreniADisco(boolean freniADisco) {
+        this.freniADisco = freniADisco;
+    }
+
+    public boolean isContachilometri() {
+        return contachilometri;
+    }
+
+    public void setContachilometri(boolean contachilometri) {
+        this.contachilometri = contachilometri;
+    }
+
+    public String getNumeroSerie() {
+        return numeroSerie;
+    }
+
+    public void setNumeroSerie(String numeroSerie) {
+        this.numeroSerie = numeroSerie;
+    }
 }
 
 public class Noleggio {

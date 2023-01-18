@@ -20,13 +20,13 @@ mediante il proprio codice fiscale.
 
 
 • Tutti i dati devono essere acquisiti e visualizzati mediante delle interfacce grafiche
-OPPURE mediante consolle (la scelta è libera).
+OPPURE mediante console (la scelta è libera).
 
 • I dati acquisiti, opportunamente elaborati, devono essere resi persistenti su file
 OPPURE su DBMS (la scelta è libera).
 
 • L’applicazione permette di visualizzare l’elenco dei kart acquistati in un intervallo di
-tempo specificato; l’elenco deve essere ordinato in base alla tipo di kart (medio,
+tempo specificato; l’elenco deve essere ordinato in base alla tipologia di kart (medio,
 avanzato, base) e, in caso di stesso tipo, in base al costo del noleggio (dal costo più
 alto).
 
