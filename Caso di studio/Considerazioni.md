@@ -35,3 +35,13 @@ Per quanto riguarda l'acquisizione e la visualizzazione dei dati, potresti utili
 Per quanto riguarda la creazione dei metodi, ti consiglio di iniziare creando i costruttori per ogni classe e i metodi get e set per gli attributi. In seguito, puoi creare i metodi richiesti come "noleggiaKart", "restituisciKart", "acquistaKart", "visualizzaElencoKart", "visualizzaElencoNoleggi".
 
 Spero che queste informazioni ti siano utili, fammi sapere se hai bisogno di ulteriore aiuto.
+
+    Creare un'interfaccia grafica o una CLI (Command Line Interface) per acquisire i dati da parte dell'utente. Se scegli di utilizzare l'interfaccia grafica, potresti utilizzare JavaFX o Swing, a seconda delle tue preferenze.
+
+    Implementare la logica di salvataggio dei dati in un file o in un database, a seconda della tua scelta. Potresti utilizzare file CSV o JSON per la persistenza dei dati su file, oppure potresti utilizzare un DBMS come MySQL o PostgreSQL per la persistenza su database.
+
+    Implementare la funzione di visualizzazione dell'elenco dei kart acquistati in un intervallo di tempo specificato, ordinato come richiesto. Potresti utilizzare la libreria Collections di Java per ordinare la lista dei kart.
+
+    Implementare la funzione di stampa dell'elenco dei kart noleggiati da un determinato cliente, ordinato come richiesto. Potresti utilizzare un writer di testo per scrivere il contenuto del file.
+
+    Testare l'applicazione per verificare che tutte le funzionalità richieste siano state implementate correttamente.
