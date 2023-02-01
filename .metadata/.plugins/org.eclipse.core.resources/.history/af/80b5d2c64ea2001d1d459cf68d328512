@@ -1,0 +1,18 @@
+public class Main {
+
+	public static void main(String[] args) {
+		int x; //dichiarazione
+		x = 45; //assegnazione
+		
+		int y = 35; //dichiarazione e inizializzazione
+		
+		int z=x+y;
+		
+		String o = "omar";
+		double b = 5.71;
+		System.out.println(z);
+		System.out.println("Z value is: ");
+		
+	}
+
+}
