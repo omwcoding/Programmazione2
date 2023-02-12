@@ -1,0 +1,46 @@
+Kart (classe):
+(con variabili Marca e Cambio)
+Metodo (dato il cambio mi ritorna il tipo di Kart)
+- Codice
+- Marca
+
+Kart Base (oggetti di tipo Kart)
+- Codice (ereditata da Kart)
+- Marca (ereditata da Kart)
+- Cambio manuale (tipo cambio enum)
+
+Kart Medio (oggetti di tipo Kart)
+- Codice (ereditata da Kart)
+- Marca (ereditata da Kart)
+- Cambio automatico (tipo cambio enum)
+
+
+Kart Avanzato (sottoclasse Kart)
+- Codice (ereditata da Kart)
+- Marca (ereditata da Kart)
+- Cambio manuale (ereditata da Kart)
+IN PIU
+- Freno a disco (enum)
+- Contachilometri (int)
+
+Noleggio (classe):
+- Kart (oggetto)
+- Data inizio 
+- Data fine
+- Costo noleggio (METODO!)
+- Penale
+- Cliente (oggetto)
+
+
+Cliente(classe):
+- non potrà prendere a noleggio più di m kart al giorno (METODO!)
+- Nome, cognome, [codice fiscale], data nascita, indirizzo
+
+Metodo per visualizzare l’elenco dei kart acquistati in un intervallo di
+tempo specificato (date due date restituisce un elenco di Kart)
+
+
+public boolean isKartBase() {
+return this.cambio == Cambio.MANUALE ? true : false;
+}
+
