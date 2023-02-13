@@ -16,4 +16,27 @@ public class Cliente {
         this.telefono = telefono;
         this.email = email;
     }
+
+    public String getnome() {
+        return nome;
+    }
+    public String getcodiceFiscale() {
+        return codiceFiscale;
+    }
+    public int getnumeroMassimoKart() {
+        return numeroMassimoKart;
+    }
+    public String getcognome() {
+        return cognome;
+    }
+    public String getIndirizzo() {
+        return indirizzo;
+    }
+    public String getTelefono() {
+        return telefono;
+    }
+    public String getEmail() {
+        return email;
+    }
+    
 }

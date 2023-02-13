@@ -2,50 +2,50 @@
 - marca
 - tipo di cambio
 - codice identificativo
-Se il Kart è modello base, il tipo di cambio è sempre manuale. 
-Se il Kart è modello medio, il tipo di cambio è sempre automatico.
+Se il Kart è modello base, il tipo di cambio è sempre manuale (valore true). 
+Se il Kart è modello medio, il tipo di cambio è sempre automatico (valore false).
 
-FARE: se il Kart è modello avanzato, avrà le caratteristiche del modello base
+FARE: se il Kart è modello avanzato (sottoclasse), avrà le caratteristiche del modello base
 e in più avrà delle nuove variabili di istanza: contachilometri e freno a disco.
 */
 public class Kart {
     private String marca;
-    private boolean tipoCambio;
-    private int codiceIdentificativo;
+    private boolean cambioManuale;
+    private int numeroSeriale;
 
-    public Kart(String marca, boolean tipoCambio, int codiceIdentificativo) {
+    public Kart(String marca, boolean cambioManuale, int numeroSeriale) {
         this.marca = marca;
-        this.tipoCambio = tipoCambio;
-        this.codiceIdentificativo = codiceIdentificativo;
+        this.cambioManuale = cambioManuale;
+        this.numeroSeriale = numeroSeriale;
     }
 
     public String getMarca() {
         return marca;
     }
 
-    public boolean isTipoCambio() {
-        return tipoCambio;
+    public boolean isCambioManuale() {
+        return cambioManuale;
     }
 
-    public int getCodiceIdentificativo() {
-        return codiceIdentificativo;
+    public int getnumeroSeriale() {
+        return numeroSeriale;
     }
 }
 
 public class KartMedio extends Kart {
-    public KartMedio(String marca, int codiceIdentificativo) {
-        super(marca, true, codiceIdentificativo);
+    public KartMedio(String marca, int numeroSeriale) {
+        super(marca, false, numeroSeriale);
     }
 }
 
 public class KartAvanzato extends Kart {
-    private boolean frenoADisco;
+    private boolean frenoADisco = true;
     private int contachilometri;
 
-    public KartAvanzato(String marca, int codiceIdentificativo, boolean frenoADisco, int contachilometri) {
-        super(marca, true, codiceIdentificativo);
+    public KartAvanzato(String marca, int numeroSeriale, boolean frenoADisco, int contaChilometri) {
+        super(marca, true, numeroSeriale);
         this.frenoADisco = frenoADisco;
-        this.contachilometri = contachilometri;
+        this.contaChilometri = contaChilometri;
     }
 
     public boolean isFrenoADisco() {
@@ -53,6 +53,6 @@ public class KartAvanzato extends Kart {
     }
 
     public int getContachilometri() {
-        return contachilometri;
+        return contaChilometri;
     }
 }
