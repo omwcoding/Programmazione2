@@ -1,22 +1,58 @@
+/*Classe che rappresenta un kart con le seguenti proprietà:
+- marca
+- tipo di cambio
+- codice identificativo
+Se il Kart è modello base, il tipo di cambio è sempre manuale. 
+Se il Kart è modello medio, il tipo di cambio è sempre automatico.
+
+FARE: se il Kart è modello avanzato, avrà le caratteristiche del modello base
+e in più avrà delle nuove variabili di istanza: contachilometri e freno a disco.
+*/
 public class Kart {
     private String marca;
-    private String tipo;
-    private String numeroSerie;
+    private boolean tipoCambio;
+    private int codiceIdentificativo;
 
-    public Kart(String marca, String tipo, String numeroSerie) {
+    public Kart(String marca, boolean tipoCambio, int codiceIdentificativo) {
         this.marca = marca;
-        this.tipo = tipo;
-        this.numeroSerie = numeroSerie;
+        this.tipoCambio = tipoCambio;
+        this.codiceIdentificativo = codiceIdentificativo;
     }
 
-    // metodi getter per accedere alle proprietà del kart
     public String getMarca() {
         return marca;
     }
-    public String getTipo() {
-        return tipo;
+
+    public boolean isTipoCambio() {
+        return tipoCambio;
     }
-    public String getNumeroSerie() {
-        return numeroSerie;
+
+    public int getCodiceIdentificativo() {
+        return codiceIdentificativo;
+    }
+}
+
+public class KartMedio extends Kart {
+    public KartMedio(String marca, int codiceIdentificativo) {
+        super(marca, true, codiceIdentificativo);
+    }
+}
+
+public class KartAvanzato extends Kart {
+    private boolean frenoADisco;
+    private int contachilometri;
+
+    public KartAvanzato(String marca, int codiceIdentificativo, boolean frenoADisco, int contachilometri) {
+        super(marca, true, codiceIdentificativo);
+        this.frenoADisco = frenoADisco;
+        this.contachilometri = contachilometri;
+    }
+
+    public boolean isFrenoADisco() {
+        return frenoADisco;
+    }
+
+    public int getContachilometri() {
+        return contachilometri;
     }
 }
