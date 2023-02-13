@@ -1,5 +1,3 @@
-package com.noleggiokart;
-
 import java.util.HashMap;
 
 public class ClienteController {

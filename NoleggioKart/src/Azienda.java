@@ -2,10 +2,10 @@ import java.util.List;
 
 public class Azienda {
   private List<Kart> kartsDisponibili;
-  private List<NoleggioKart> noleggiEffettuati;
+  private List<Noleggio> noleggiEffettuati;
   private List<Cliente> clientiRegistrati;
 
-  public Azienda(List<Kart> kartsDisponibili, List<NoleggioKart> noleggiEffettuati, List<Cliente> clientiRegistrati) {
+  public Azienda(List<Kart> kartsDisponibili, List<Noleggio> noleggiEffettuati, List<Cliente> clientiRegistrati) {
     this.kartsDisponibili = kartsDisponibili;
     this.noleggiEffettuati = noleggiEffettuati;
     this.clientiRegistrati = clientiRegistrati;
@@ -15,7 +15,7 @@ public class Azienda {
     return kartsDisponibili;
   }
 
-  public List<NoleggioKart> getNoleggiEffettuati() {
+  public List<Noleggio> getNoleggiEffettuati() {
     return noleggiEffettuati;
   }
 
@@ -27,7 +27,7 @@ public class Azienda {
     this.kartsDisponibili = kartsDisponibili;
   }
 
-  public void setNoleggiEffettuati(List<NoleggioKart> noleggiEffettuati) {
+  public void setNoleggiEffettuati(List<Noleggio> noleggiEffettuati) {
     this.noleggiEffettuati = noleggiEffettuati;
   }
 

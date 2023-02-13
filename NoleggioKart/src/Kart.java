@@ -1,22 +1,34 @@
+/*Classe che rappresenta un kart con le seguenti proprietà:
+- marca
+- tipo di cambio
+- codice identificativo
+Se il Kart è modello base, il tipo di cambio è sempre manuale (valore true). 
+Se il Kart è modello medio, il tipo di cambio è sempre automatico (valore false).
+
+FARE: se il Kart è modello avanzato (sottoclasse), avrà le caratteristiche del modello base
+e in più avrà delle nuove variabili di istanza: contachilometri e freno a disco.
+*/
 public class Kart {
     private String marca;
-    private String tipo;
-    private String numeroSerie;
+    private boolean cambioManuale = true;
+    private int numeroSeriale;
 
-    public Kart(String marca, String tipo, String numeroSerie) {
+    public Kart(String marca, boolean cambioManuale, int numeroSeriale) {
         this.marca = marca;
-        this.tipo = tipo;
-        this.numeroSerie = numeroSerie;
+        this.cambioManuale = cambioManuale;
+        this.numeroSeriale = numeroSeriale;
     }
 
-    // metodi getter per accedere alle proprietà del kart
     public String getMarca() {
         return marca;
     }
-    public String getTipo() {
-        return tipo;
+
+    public boolean isCambioManuale() {
+        return cambioManuale;
     }
-    public String getNumeroSerie() {
-        return numeroSerie;
+
+    public int getnumeroSeriale() {
+        return numeroSeriale;
     }
 }
+
