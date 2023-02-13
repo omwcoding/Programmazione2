@@ -4,8 +4,7 @@
 - codice identificativo
 Se il Kart è modello base, il tipo di cambio è sempre manuale (valore true). 
 Se il Kart è modello medio, il tipo di cambio è sempre automatico (valore false).
-
-FARE: se il Kart è modello avanzato (sottoclasse), avrà le caratteristiche del modello base
+Se il Kart è modello avanzato (sottoclasse), avrà le caratteristiche del modello base
 e in più avrà delle nuove variabili di istanza: contachilometri e freno a disco.
 */
 public class Kart {
