@@ -1,20 +1,18 @@
 public class Cliente {
     private String nome;
     private String codiceFiscale;
-    private int numeroMassimoKart;
+    private int numeroMassimoKart = 5; //m numero da scegliere
     private String cognome;
     private String indirizzo;
     private String telefono;
-    private String email;
 
-    public Cliente(String nome, String codiceFiscale, int numeroMassimoKart, String cognome, String indirizzo, String telefono, String email) {
+    public Cliente(String nome, String codiceFiscale, int numeroMassimoKart, String cognome, String indirizzo, String telefono) {
         this.nome = nome;
         this.codiceFiscale = codiceFiscale;
         this.numeroMassimoKart = numeroMassimoKart;
         this.cognome = cognome;
         this.indirizzo = indirizzo;
         this.telefono = telefono;
-        this.email = email;
     }
 
     public String getnome() {
@@ -34,9 +32,6 @@ public class Cliente {
     }
     public String getTelefono() {
         return telefono;
-    }
-    public String getEmail() {
-        return email;
     }
     
 }
