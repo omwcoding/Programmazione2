@@ -4,22 +4,27 @@ public class Persona {
 	
 	String nome;
 	String cognome;
-	int eta;
-	String colorePreferito;
+	static int numeroPersone; //questa variabile è uguale per tutti gli oggetti di tipo Persona, è condivisa
 	
 	//costruttore per Persona
-	Persona(String nome, String cognome, int eta, String colorePreferito){
+	Persona(String nome, String cognome){
 		
 		this.nome = nome;
 		this.cognome = cognome;
-		this.eta = eta;
-		this.colorePreferito = colorePreferito;
+		numeroPersone++; //ogni volta che creo un oggetto di tipo Persona, incremento la variabile numeroPersone
+		//System.out.println(numeroPersone);
+	}
+
+	public String toString(){
+		String stringa = this.nome + " " + this.cognome + "\n";
+		return stringa;
 	}
 	
-	void saluta() {
-		//variabile usabile in ogni parte del codice
-		//è stata dichiarata nel costruttore in riga 13
-		System.out.println("Ciao sono " + this.nome);
+	static void stampaNumeroPersone() {
+		System.out.println("numero persone: " + numeroPersone);
+	}
+	void saluta(Persona personadaSalutare) {
+		System.out.println("Ciao " + personadaSalutare.nome + ", io sono " + this.nome);
 	}
 	
 	void addizione(int a, int b) {
@@ -29,5 +34,8 @@ public class Persona {
 	
 	void qwerty(int prova) {
 		System.out.println("il risultato è" + prova);
+	}
+	void saluta(){
+		System.out.println("Ciao!");
 	}
 }
