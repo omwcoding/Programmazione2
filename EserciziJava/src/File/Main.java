@@ -30,9 +30,9 @@ public class Main {
             writer.write("Ciao sono Omar \nSto imparando Java\n");
             //aggiunge testo alla fine del file
             writer.append("Bel file\n");
+            //chiudiamo la stream del writer
             writer.close();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -44,6 +44,8 @@ public class Main {
                 System.out.print((char)data);
                 data = reader.read();
             }
+            //chiudi la stream del reader
+            reader.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
