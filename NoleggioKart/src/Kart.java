@@ -32,8 +32,9 @@ public class Kart {
         return cambioManuale;
     }
 
-    public int getnumeroSeriale() {
+    public int getNumeroSeriale() {
         return numeroSeriale;
     }
+    
 }
 
