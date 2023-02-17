@@ -9,7 +9,7 @@ e in più avrà delle nuove variabili di istanza: contachilometri e freno a disc
 */
 public class Kart {
     private String marca;
-    private boolean cambioManuale = true;
+    private boolean cambioManuale;
     private int numeroSeriale;
 
     public Kart(String marca, boolean cambioManuale, int numeroSeriale) {
@@ -21,6 +21,12 @@ public class Kart {
     public class KartMedio extends Kart {
         public KartMedio(String marca, int numeroSeriale) {
             super(marca, false, numeroSeriale);
+        }
+    }
+
+    public class KartBase extends Kart {
+        public KartBase(String marca, int numeroSeriale) {
+            super(marca, true, numeroSeriale);
         }
     }
 
