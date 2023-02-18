@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -12,7 +13,8 @@ public class Main {
             System.out.println("Scegli un'opzione:");
             System.out.println("1. Inserisci uno o più clienti");
             System.out.println("2. Mostra tutti i clienti registrati");
-            System.out.println("3. Opzione 3");
+            System.out.println("3. Mostra l'elenco dei kart acquistati in un intervallo di tempo specificato");
+            System.out.println("4. Stampa su file l'elenco dei kart noleggiati da un cliente in un intervallo di tempo specificato");
             System.out.println("0. Esci dal programma");
         
 
@@ -28,6 +30,7 @@ public class Main {
             switch (scelta) {
                 
                 case 1:
+                    //far diventare tutto questo un metodo?
                     List<Cliente> clienti = new ArrayList<Cliente>();
                     String decisione = "y";
                 
@@ -46,7 +49,19 @@ public class Main {
                     GestoreClienti.mostraClientiRegistrati();
                     break;
                 case 3:
+                    System.out.println("Inserisci la data di inizio nel formato YYYY-MM-DD:");
+                    String dataInizioStr = scanner.nextLine();
+                    LocalDate dataInizio = LocalDate.parse(dataInizioStr);
+                
+                    System.out.println("Inserisci la data di fine nel formato YYYY-MM-DD:");
+                    String dataFineStr = scanner.nextLine();
+                    LocalDate dataFine = LocalDate.parse(dataFineStr);
+                    
+                    GestoreKart.mostraKartNoleggiatiInIntervallo(dataInizio, dataFine);
                     // esegui l'opzione 3
+                    break;
+                case 4:
+                    // esegui l'opzione 4
                     break;
                 case 0:
                     System.out.println("Uscita dal programma...");
