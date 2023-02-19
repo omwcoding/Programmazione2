@@ -18,6 +18,7 @@ public class GestoreClienti {
             System.out.println("Errore durante la lettura da file: " + e.getMessage());
         }
 
+        System.out.println("## Elenco clienti registrati: ##");
         // stampa la lista dei clienti letti ordinata per nome
         for (Cliente c : clientiLetti) {
             System.out.println(c);

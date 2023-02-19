@@ -68,28 +68,7 @@ public class Main {
                     break;
                 default:
                     System.out.println("Scelta non valida!");
-            }
-
-
-
-
-
-
-
-
-
-
-
-
-        
-        
-        
-        /*Kart kartbase1 = new Kart("Ferrari", true, 1);
-        KartAvanzato kartavanzato1 = new KartAvanzato("Suzuki", 3, true, 100);
-        Kart kartmedio1 = new Kart("Yamaha", false, 4);
-        */
-
-        
+            }        
         }
     scanner.close();
     }
