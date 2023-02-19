@@ -16,10 +16,10 @@ public class ObjectIO {
     }
  
     public void writeObjectToFile(List<Cliente> clienti) {
-            // Scrivi tutti i clienti presenti nella coda sul file
-            try (ObjectOutputStream writer = new ObjectOutputStream(new FileOutputStream(filepath))) {
-                
-                    writer.writeObject(clienti);
+            try (ObjectOutputStream writer = new ObjectOutputStream(new FileOutputStream(filepath, true))) {
+                   
+                writer.writeObject(clienti);
+
                 
                 System.out.println("Cliente aggiunto con successo.");
             } catch (IOException e) {
