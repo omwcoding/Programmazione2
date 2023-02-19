@@ -18,15 +18,15 @@ public class Kart {
         this.numeroSeriale = numeroSeriale;
     }
 
-    public class KartMedio extends Kart {
-        public KartMedio(String marca, int numeroSeriale) {
-            super(marca, false, numeroSeriale);
-        }
-    }
-
     public class KartBase extends Kart {
         public KartBase(String marca, int numeroSeriale) {
             super(marca, true, numeroSeriale);
+        }
+    }
+
+    public class KartMedio extends Kart {
+        public KartMedio(String marca, int numeroSeriale) {
+            super(marca, false, numeroSeriale);
         }
     }
 
@@ -41,6 +41,14 @@ public class Kart {
     public int getNumeroSeriale() {
         return numeroSeriale;
     }
-    
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String setMarca(){
+        return this.marca;
+    }
+   
 }
 
