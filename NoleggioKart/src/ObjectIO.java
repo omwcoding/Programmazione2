@@ -1,9 +1,11 @@
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ObjectIO {
@@ -16,26 +18,33 @@ public class ObjectIO {
     }
  
     public void writeObjectToFile(List<Cliente> clienti) {
-            try (ObjectOutputStream writer = new ObjectOutputStream(new FileOutputStream(filepath, true))) {
-                   
-                writer.writeObject(clienti);
-
-                
-                System.out.println("Cliente aggiunto con successo.");
-            } catch (IOException e) {
-                e.printStackTrace();
+        try (ObjectOutputStream writer = new ObjectOutputStream(new FileOutputStream(filepath, true))) {
+            for (Cliente cliente : clienti) {
+                writer.writeObject(cliente);
             }
+            System.out.println("Clienti aggiunti con successo.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
 
-    public Object readObjectFromFile(File file) throws IOException, ClassNotFoundException {
-        Object result = null;
+    public List<Cliente> readObjectFromFile(File file) throws IOException, ClassNotFoundException {
+        List<Cliente> result = new ArrayList<>();
         try (FileInputStream fis = new FileInputStream(file);
-                ObjectInputStream ois = new ObjectInputStream(fis)) {
-            result = ois.readObject();
+             ObjectInputStream ois = new ObjectInputStream(fis)) {
+            while (true) {
+                try {
+                    Cliente cliente = (Cliente) ois.readObject();
+                    result.add(cliente);
+                } catch (EOFException e) {
+                    break;
+                }
+            }
         }
         return result;
     }
+    
         
     
 }
