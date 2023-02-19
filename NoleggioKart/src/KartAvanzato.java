@@ -1,3 +1,4 @@
+
 public class KartAvanzato extends Kart {
     private boolean frenoADisco = true;
     private int contaChilometri;

@@ -10,8 +10,8 @@ public class Main {
         int scelta = -1;
 
         while (scelta != 0){
-            System.out.println("Scegli un'opzione:");
-            System.out.println("1. Inserisci uno o più clienti");
+            System.out.println("## Scegli un'opzione: ##");
+            System.out.println("1. Inserisci uno o più nuovi clienti");
             System.out.println("2. Mostra tutti i clienti registrati");
             System.out.println("3. Mostra l'elenco dei kart acquistati in un intervallo di tempo specificato");
             System.out.println("4. Stampa su file l'elenco dei kart noleggiati da un cliente in un intervallo di tempo specificato");

@@ -36,4 +36,24 @@ public class Noleggio {
     public double getPenale() {
         return penale;
     }
+    // metodi setter per modificare le proprietà del noleggio
+    public void setKart(Kart kart) {
+        this.kart = kart;
+    }
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+    public void setDataInizio(Date dataInizio) {
+        this.dataInizio = dataInizio;
+    }
+    public void setDataFine(Date dataFine) {
+        this.dataFine = dataFine;
+    }
+    public void setCosto(double costo) {
+        this.costo = costo;
+    }
+    public void setPenale(double penale) {
+        this.penale = penale;
+    }
+    
 }

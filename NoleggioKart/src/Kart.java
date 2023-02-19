@@ -1,12 +1,5 @@
-/*Classe che rappresenta un kart con le seguenti proprietà:
-- marca
-- tipo di cambio
-- codice identificativo
-Se il Kart è modello base, il tipo di cambio è sempre manuale (valore true). 
-Se il Kart è modello medio, il tipo di cambio è sempre automatico (valore false).
-Se il Kart è modello avanzato (sottoclasse), avrà le caratteristiche del modello base
-e in più avrà delle nuove variabili di istanza: contachilometri e freno a disco.
-*/
+import java.util.Scanner;
+
 public class Kart {
     private String marca;
     private boolean cambioManuale;
@@ -30,8 +23,13 @@ public class Kart {
         }
     }
 
+    //metodi getter e setter
     public String getMarca() {
         return marca;
+    }
+
+    public String setMarca(){
+        return this.marca;
     }
 
     public boolean isCambioManuale() {
@@ -42,13 +40,43 @@ public class Kart {
         return numeroSeriale;
     }
 
-    public void setMarca(String marca) {
-        this.marca = marca;
+    public int setNumeroSeriale(){
+        return this.numeroSeriale;
     }
 
-    public String setMarca(){
-        return this.marca;
+    //metodo per registrare un kart da tastiera
+    public Kart registraKartDaTastiera(Scanner scanner) {
+        System.out.println("Inserisci la marca del kart");
+        String marca = scanner.nextLine();
+
+        System.out.println("Inserisci il numero seriale del kart");
+        int numeroSeriale = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.println("Inserisci il tipo di kart (1 per base, 2 per medio, 3 per avanzato)");
+        int tipoKart = scanner.nextInt();
+        scanner.nextLine();
+
+        switch (tipoKart) {
+            case 1:
+                return new KartBase(marca, numeroSeriale);
+            case 2:
+                return new KartMedio(marca, numeroSeriale);
+            case 3:
+                System.out.println("Inserisci il numero di chilometri percorsi");
+                int contaChilometri = scanner.nextInt();
+
+                System.out.println("Il kart ha freno a disco? (true/false)");
+                boolean frenoADisco = scanner.nextBoolean();
+                
+                return new KartAvanzato(marca, numeroSeriale, frenoADisco, contaChilometri);
+            default:
+                return null;
+        }
     }
+
+
+    
    
 }
 

@@ -11,7 +11,7 @@ public class GestoreKart {
         //leggi la lista dei kart nolleggiati dal file binario
         List<Kart> kartLetti = new ArrayList<Kart>();
         try {
-            ObjectInputStream reader = new ObjectInputStream(new FileInputStream("C:\\Users\\Omar\\Desktop\\Coding\\Programmazione2\\NoleggioKart\\KartNoleggiati.bin"));
+            ObjectInputStream reader = new ObjectInputStream(new FileInputStream("C:\\Users\\Omar\\Desktop\\Coding\\Programmazione2\\NoleggioKart\\src\\KartNoleggiati.bin"));
             kartLetti = (List<Kart>) reader.readObject();
             reader.close();
         } catch (IOException | ClassNotFoundException e) {
