@@ -16,4 +16,9 @@ public class KartAvanzato extends Kart {
     public int getContachilometri() {
         return contaChilometri;
     }
+
+    public int setContachilometri(){
+        return this.contaChilometri;
+    }
+    
 }
