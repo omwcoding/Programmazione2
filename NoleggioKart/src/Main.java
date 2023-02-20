@@ -46,6 +46,7 @@ public class Main {
                     break;
                 
                 case 2:
+
                     GestoreClienti.mostraClientiRegistrati();
                     break;
                 case 3:

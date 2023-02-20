@@ -18,32 +18,29 @@ public class ObjectIO {
     }
  
     public void writeObjectToFile(List<Cliente> clienti) {
-        try (ObjectOutputStream writer = new ObjectOutputStream(new FileOutputStream(filepath))) {
-            writer.writeObject(clienti);
-            System.out.println("Clienti aggiunti con successo.");
+        try {
+            File file = new File(filepath);
+            FileOutputStream fos = new FileOutputStream(file, true); // true indica che i dati vanno scritti in append
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(clienti);
+            oos.close();
+            fos.close();
+            System.out.println("Dati scritti correttamente su file.");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
     
     
-
-    public List<Cliente> readObjectFromFile(File file) throws IOException, ClassNotFoundException {
-        List<Cliente> result = new ArrayList<>();
-        try (FileInputStream fis = new FileInputStream(file);
-             ObjectInputStream ois = new ObjectInputStream(fis)) {
-            while (true) {
-                try {
-                    Cliente cliente = (Cliente) ois.readObject();
-                    result.add(cliente);
-                } catch (EOFException e) {
-                    break;
-                }
-            }
+    @SuppressWarnings("unchecked")
+    public static List<Cliente> readObjectFromFile(String fileName) {
+        List<?> objectList = null;
+        try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(fileName))) {
+            objectList = (List<?>) objectInputStream.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
         }
-        return result;
+        return (List<Cliente>) objectList; // Suppress warning with @SuppressWarnings("unchecked")
     }
-    
-        
-    
+     
 }
