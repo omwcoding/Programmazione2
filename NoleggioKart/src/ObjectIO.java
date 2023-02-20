@@ -18,15 +18,14 @@ public class ObjectIO {
     }
  
     public void writeObjectToFile(List<Cliente> clienti) {
-        try (ObjectOutputStream writer = new ObjectOutputStream(new FileOutputStream(filepath, true))) {
-            for (Cliente cliente : clienti) {
-                writer.writeObject(cliente);
-            }
+        try (ObjectOutputStream writer = new ObjectOutputStream(new FileOutputStream(filepath))) {
+            writer.writeObject(clienti);
             System.out.println("Clienti aggiunti con successo.");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+    
     
 
     public List<Cliente> readObjectFromFile(File file) throws IOException, ClassNotFoundException {
