@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ObjectIO {
  
-    private static final String filepath="C:\\Users\\Omar\\Desktop\\Coding\\Programmazione2\\NoleggioKart\\Clienti.bin";
+    private static final String filepath="C:\\Users\\Omar\\Desktop\\Coding\\Programmazione2\\Clienti.json";
  
     public static void main(String args[]) {
  
@@ -19,8 +19,7 @@ public class ObjectIO {
  
     public void writeObjectToFile(List<Cliente> clienti) {
         try {
-            File file = new File(filepath);
-            FileOutputStream fos = new FileOutputStream(file, true); // true indica che i dati vanno scritti in append
+            FileOutputStream fos = new FileOutputStream(filepath, true); // true indica che i dati vanno scritti in append
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(clienti);
             oos.close();
@@ -42,5 +41,6 @@ public class ObjectIO {
         }
         return (List<Cliente>) objectList; // Suppress warning with @SuppressWarnings("unchecked")
     }
+
      
 }

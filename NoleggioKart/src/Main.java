@@ -1,6 +1,4 @@
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+//import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Main {
@@ -30,26 +28,22 @@ public class Main {
             switch (scelta) {
                 
                 case 1:
-                    //far diventare tutto questo un metodo?
-                    List<Cliente> clienti = new ArrayList<Cliente>();
                     String decisione = "y";
                 
                     while (decisione.equals("y")){
-                        Cliente nuovo = Cliente.registraClienteDaTastiera(scanner);
-                        clienti.add(nuovo);
+                        Cliente nuovoCliente = Cliente.registraClienteDaTastiera(scanner);
+                        Cliente.salvaClientiSuFile(nuovoCliente, "Clienti.json");
+                        System.out.println("Cliente registrato come: [ " + nuovoCliente + " ]");
                         System.out.println("Continuare? y/n");
                         decisione = scanner.nextLine().toLowerCase();
                     }
-                    
-                    ObjectIO objectIO = new ObjectIO();
-                    objectIO.writeObjectToFile(clienti);
                     break;
                 
                 case 2:
-
-                    GestoreClienti.mostraClientiRegistrati();
+                    Cliente.mostraClientiRegistrati();
                     break;
                 case 3:
+                /* 
                     System.out.println("Inserisci la data di inizio nel formato YYYY-MM-DD:");
                     String dataInizioStr = scanner.nextLine();
                     LocalDate dataInizio = LocalDate.parse(dataInizioStr);
@@ -57,8 +51,8 @@ public class Main {
                     System.out.println("Inserisci la data di fine nel formato YYYY-MM-DD:");
                     String dataFineStr = scanner.nextLine();
                     LocalDate dataFine = LocalDate.parse(dataFineStr);
-                    
-                    GestoreKart.mostraKartNoleggiatiInIntervallo(dataInizio, dataFine);
+                
+                */
                     // esegui l'opzione 3
                     break;
                 case 4:

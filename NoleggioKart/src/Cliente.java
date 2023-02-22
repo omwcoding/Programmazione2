@@ -1,6 +1,18 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
+
+@SuppressWarnings("serial")
 public class Cliente implements Serializable{
     private String nome;
     private String codiceFiscale;
@@ -10,7 +22,7 @@ public class Cliente implements Serializable{
     private String telefono;
 
     
-    public Cliente(String nome,String cognome,  int numeroMassimoKart, String codiceFiscale, String indirizzo, String telefono) {
+    public Cliente(String nome, String cognome,  int numeroMassimoKart, String codiceFiscale, String indirizzo, String telefono) {
         this.nome = nome;
         this.codiceFiscale = codiceFiscale;
         this.numeroMassimoKart = numeroMassimoKart;
@@ -87,5 +99,55 @@ public class Cliente implements Serializable{
         .append(" Codice Fiscale : ").append(this.codiceFiscale).append(" Numero Massimo Kart : ")
         .append(this.numeroMassimoKart).append(" Indirizzo : ").append(this.indirizzo)
         .append(" Telefono : ").append(this.telefono).toString();
+    }   
+    
+
+    public static List<Cliente> leggiClientiDaFile(String filePath) {
+        Gson gson = new Gson();
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            JsonElement jsonElement = JsonParser.parseReader(reader);
+            if (jsonElement.isJsonObject()) {
+                // Se il JSON è un oggetto, crea una lista contenente l'unico cliente nel JSON
+                Cliente cliente = gson.fromJson(jsonElement, Cliente.class);
+                List<Cliente> clienti = new ArrayList<>();
+                clienti.add(cliente);
+                return clienti;
+            } else if (jsonElement.isJsonArray()) {
+                // Se il JSON è un array, leggi e restituisci la lista di clienti
+                TypeToken<List<Cliente>> typeToken = new TypeToken<List<Cliente>>(){};
+                return gson.fromJson(jsonElement, typeToken.getType());
+            }
+        } catch (IOException e) {
+            System.out.println("Errore nella lettura del file " + filePath + ".");
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+
+    public static void salvaClientiSuFile(Cliente nuovoCliente, String filePath) {
+        Gson gson = new Gson();
+        List<Cliente> clienti = leggiClientiDaFile(filePath);
+        if (clienti == null) {
+        clienti = new ArrayList<>();
+        }
+        clienti.add(nuovoCliente);
+        
+        try (FileWriter writer = new FileWriter(filePath)) {
+            gson.toJson(clienti, writer);
+        } catch (IOException e) {
+            System.out.println("Errore nel salvataggio dei clienti nel file " + filePath + ".");
+            e.printStackTrace();
+        }
+    }
+    
+    
+    public static void mostraClientiRegistrati() {
+        List<Cliente> clientiLetti = leggiClientiDaFile("C:\\Users\\Omar\\Desktop\\Coding\\Programmazione2\\Clienti.json");
+        System.out.println("## Elenco clienti registrati: ##\n");
+        for (Cliente c : clientiLetti) {
+            System.out.println(c);
+        }
+        System.out.println();
     }
 }
