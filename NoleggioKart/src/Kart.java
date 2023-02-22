@@ -65,8 +65,9 @@ public class Kart {
             case 3:
                 System.out.println("Inserisci il numero di chilometri percorsi");
                 int contaChilometri = scanner.nextInt();
+                scanner.nextLine();
 
-                System.out.println("Il kart ha freno a disco? (true/false)");
+                System.out.println("Il kart ha freno a disco? (1 per true/2 per false)");
                 boolean frenoADisco = scanner.nextBoolean();
                 
                 return new KartAvanzato(marca, numeroSeriale, frenoADisco, contaChilometri);

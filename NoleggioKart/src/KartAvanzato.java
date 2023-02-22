@@ -20,5 +20,8 @@ public class KartAvanzato extends Kart {
     public int setContachilometri(){
         return this.contaChilometri;
     }
+    public boolean setFrenoADisco(){
+        return this.frenoADisco;
+    }
     
 }
