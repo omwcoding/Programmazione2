@@ -132,9 +132,11 @@ public class Cliente implements Serializable{
         clienti = new ArrayList<>();
         }
         clienti.add(nuovoCliente);
+
         
         try (FileWriter writer = new FileWriter(filePath)) {
             gson.toJson(clienti, writer);
+
         } catch (IOException e) {
             System.out.println("Errore nel salvataggio dei clienti nel file " + filePath + ".");
             e.printStackTrace();
