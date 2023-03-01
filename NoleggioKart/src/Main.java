@@ -4,8 +4,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
         int scelta = -1;
+        System.out.println("## Benvenuto nel programma di gestione noleggio kart!  ##");
 
         while (scelta != 0){
             System.out.println("## Scegli un'opzione: ##");

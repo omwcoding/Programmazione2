@@ -1,11 +1,19 @@
-
 public class KartAvanzato extends Kart {
-    private boolean frenoADisco = true;
     private int contaChilometri;
+    private boolean frenoADisco;
 
-    public KartAvanzato(String marca, int numeroSeriale, boolean frenoADisco, int contaChilometri) {
-        super(marca, true, numeroSeriale);
+    public KartAvanzato(String marca, int numeroSeriale, String tipoCambio, int contaChilometri, boolean frenoADisco, Noleggio noleggioCorrente) {
+        super(marca, numeroSeriale, tipoCambio, noleggioCorrente);
+        this.contaChilometri = contaChilometri;
         this.frenoADisco = frenoADisco;
+        // eventuali inizializzazioni aggiuntive
+    }
+
+    public int getContaChilometri() {
+        return contaChilometri;
+    }
+
+    public void setContaChilometri(int contaChilometri) {
         this.contaChilometri = contaChilometri;
     }
 
@@ -13,15 +21,7 @@ public class KartAvanzato extends Kart {
         return frenoADisco;
     }
 
-    public int getContachilometri() {
-        return contaChilometri;
+    public void setFrenoADisco(boolean frenoADisco) {
+        this.frenoADisco = frenoADisco;
     }
-
-    public int setContachilometri(){
-        return this.contaChilometri;
-    }
-    public boolean setFrenoADisco(){
-        return this.frenoADisco;
-    }
-    
 }

@@ -1,50 +1,51 @@
-import java.util.Scanner;
-
-public class Kart {
+public abstract class Kart {
     private String marca;
-    private boolean cambioManuale;
     private int numeroSeriale;
+    private String tipoCambio;
+    private Noleggio noleggioCorrente;
 
-    public Kart(String marca, boolean cambioManuale, int numeroSeriale) {
+    public Kart(String marca, int numeroSeriale,  String tipoCambio, Noleggio noleggioCorrente) {
         this.marca = marca;
-        this.cambioManuale = cambioManuale;
         this.numeroSeriale = numeroSeriale;
+        this.tipoCambio = tipoCambio;
     }
 
-    public class KartBase extends Kart {
-        public KartBase(String marca, int numeroSeriale) {
-            super(marca, true, numeroSeriale);
-        }
-    }
-
-    public class KartMedio extends Kart {
-        public KartMedio(String marca, int numeroSeriale) {
-            super(marca, false, numeroSeriale);
-        }
-    }
-
-    //metodi getter e setter
     public String getMarca() {
         return marca;
     }
 
-    public String setMarca(){
-        return this.marca;
-    }
-
-    public boolean isCambioManuale() {
-        return cambioManuale;
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
 
     public int getNumeroSeriale() {
         return numeroSeriale;
     }
 
-    public int setNumeroSeriale(){
-        return this.numeroSeriale;
+    public void setNumeroSeriale(int numeroSeriale) {
+        this.numeroSeriale = numeroSeriale;
     }
 
+    public String getTipoCambio() {
+        return tipoCambio;
+    }
+
+    public void setTipoCambio(String tipoCambio) {
+        this.tipoCambio = tipoCambio;
+    }
+
+    public Noleggio getNoleggioCorrente() {
+        return noleggioCorrente;
+    }
+
+    public void setNoleggioCorrente(Noleggio noleggioCorrente) {
+        this.noleggioCorrente = noleggioCorrente;
+    }
+
+
+
     //metodo per registrare un kart da tastiera
+    /*
     public Kart registraKartDaTastiera(Scanner scanner) {
         System.out.println("Inserisci la marca del kart");
         String marca = scanner.nextLine();
@@ -75,9 +76,6 @@ public class Kart {
                 return null;
         }
     }
-
-
-    
-   
+ */   
 }
 

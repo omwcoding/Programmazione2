@@ -1,59 +1,64 @@
 import java.util.Date;
 
 public class Noleggio {
-    private Kart kart;
-    private Cliente cliente;
-    private Date dataInizio;
-    private Date dataFine;
-    private double costo;
-    private double penale;
-
-    public Noleggio(Kart kart, Cliente cliente, Date dataInizio, Date dataFine, double costo, double penale) {
-        this.kart = kart;
-        this.cliente = cliente;
-        this.dataInizio = dataInizio;
-        this.dataFine = dataFine;
-        this.costo = costo;
+    private Kart kartNoleggiato;
+    private Cliente clienteAssociato;
+    private int penale;
+    private Date dataInizioNoleggio;
+    private Date dataFineNoleggio;
+    
+    public Noleggio(Kart kartNoleggiato, Cliente clienteAssociato, int penale, Date dataInizioNoleggio, Date dataFineNoleggio) {
+        this.kartNoleggiato = kartNoleggiato;
+        this.clienteAssociato = clienteAssociato;
         this.penale = penale;
-    }
-
-    // metodi getter per accedere alle proprietà del noleggio
-    public Kart getKart() {
-        return kart;
-    }
-    public Cliente getCliente() {
-        return cliente;
-    }
-    public Date getDataInizio() {
-        return dataInizio;
-    }
-    public Date getDataFine() {
-        return dataFine;
-    }
-    public double getCosto() {
-        return costo;
-    }
-    public double getPenale() {
-        return penale;
-    }
-    // metodi setter per modificare le proprietà del noleggio
-    public void setKart(Kart kart) {
-        this.kart = kart;
-    }
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-    public void setDataInizio(Date dataInizio) {
-        this.dataInizio = dataInizio;
-    }
-    public void setDataFine(Date dataFine) {
-        this.dataFine = dataFine;
-    }
-    public void setCosto(double costo) {
-        this.costo = costo;
-    }
-    public void setPenale(double penale) {
-        this.penale = penale;
+        this.dataInizioNoleggio = dataInizioNoleggio;
+        this.dataFineNoleggio = dataFineNoleggio;
     }
     
+    public Kart getKartNoleggiato() {
+        return kartNoleggiato;
+    }
+
+    public void setKartNoleggiato(Kart kartNoleggiato) {
+        this.kartNoleggiato = kartNoleggiato;
+    }
+
+    public Cliente getClienteAssociato() {
+        return clienteAssociato;
+    }
+
+    public void setClienteAssociato(Cliente clienteAssociato) {
+        this.clienteAssociato = clienteAssociato;
+    }
+
+    public int getPenale() {
+        return penale;
+    }
+
+    public void setPenale(int penale) {
+        this.penale = penale;
+    }
+
+    public Date getDataInizioNoleggio() {
+        return dataInizioNoleggio;
+    }
+
+    public void setDataInizioNoleggio(Date dataInizioNoleggio) {
+        this.dataInizioNoleggio = dataInizioNoleggio;
+    }
+
+    public Date getDataFineNoleggio() {
+        return dataFineNoleggio;
+    }
+
+    public void setDataFineNoleggio(Date dataFineNoleggio) {
+        this.dataFineNoleggio = dataFineNoleggio;
+    }
+
+
+
+    public void noleggiaKart(Kart kart, Cliente cliente, Date dataInizioNoleggio, Date dataFineNoleggio) {
+        Noleggio noleggio = new Noleggio(kart, cliente, penale, dataInizioNoleggio, dataFineNoleggio);
+        kart.setNoleggioCorrente(noleggio);
+    }
 }
