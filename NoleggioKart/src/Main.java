@@ -1,4 +1,3 @@
-//import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Main {
@@ -31,37 +30,38 @@ public class Main {
                     String decisione = "y";
                 
                     while (decisione.equals("y")){
-                        Cliente nuovoCliente = Cliente.registraClienteDaTastiera(scanner);
-                        Cliente.salvaClientiSuFile(nuovoCliente, "Clienti.json");
-                        System.out.println("Cliente registrato come: [ " + nuovoCliente + " ]");
-                        System.out.println("Continuare? y/n");
-                        decisione = scanner.nextLine().toLowerCase();
+                        Cliente nuovoCliente = Cliente.registraClienteDaTastiera(scanner);  //registra un nuovo cliente da tastiera
+                        Cliente.salvaClientiSuFile(nuovoCliente, "Clienti.json");       //salva il cliente su file
+                        System.out.println("Cliente registrato come: [ " + nuovoCliente + " ]"); //ci mostra il cliente registrato
+                        System.out.println("Continuare? y/n");      //chiede se si vuole continuare
+                        decisione = scanner.nextLine().toLowerCase();       //converte la stringa in minuscolo
                     }
                     break;
                 
                 case 2:
-                    Cliente.mostraClientiRegistrati();
+
+                    Cliente.mostraClientiRegistrati();  //mostra i clienti registrati richiamando il metodo mostraClientiRegistrati
                     break;
+
                 case 3:
-                /* 
-                    System.out.println("Inserisci la data di inizio nel formato YYYY-MM-DD:");
-                    String dataInizioStr = scanner.nextLine();
-                    LocalDate dataInizio = LocalDate.parse(dataInizioStr);
+
+                    Noleggio.registraDateDaTastiera();  //registra le date da tastiera richiamando il metodo registraDateDaTastiera
                 
-                    System.out.println("Inserisci la data di fine nel formato YYYY-MM-DD:");
-                    String dataFineStr = scanner.nextLine();
-                    LocalDate dataFine = LocalDate.parse(dataFineStr);
-                
-                */
                     // esegui l'opzione 3
                     break;
+
                 case 4:
+
                     // esegui l'opzione 4
                     break;
+
                 case 0:
+
                     System.out.println("Uscita dal programma...");
                     break;
+
                 default:
+
                     System.out.println("Scelta non valida!");
             }        
         }

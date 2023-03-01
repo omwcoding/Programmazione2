@@ -16,7 +16,7 @@ import com.google.gson.reflect.TypeToken;
 public class Cliente implements Serializable{
     private String nome;
     private String codiceFiscale;
-    private int numeroMassimoKart; //m numero da scegliere
+    private int numeroMassimoKart;
     private String cognome;
     private String indirizzo;
     private String telefono;
@@ -72,24 +72,48 @@ public class Cliente implements Serializable{
     //metodo per registrare un cliente da tastiera  
     public static Cliente registraClienteDaTastiera(Scanner scanner) {
 
-        System.out.print("Inserisci il nome del cliente: ");
-        String nome = scanner.nextLine();
+        String nome = "";
+        String cognome = "";
+        String codiceFiscale = "";
+        int numeroMassimoKart = 0;
+        String indirizzo = "";
+        String telefono = "";
 
-        System.out.print("Inserisci il cognome del cliente: ");
-        String cognome = scanner.nextLine();
+        do {
+            System.out.print("Inserisci il nome del cliente: ");
+            nome = scanner.nextLine().trim();
+        } while (nome.isEmpty());
 
-        System.out.print("Inserisci il codice fiscale del cliente: ");
-        String codiceFiscale = scanner.nextLine();
+        do {
+            System.out.print("Inserisci il cognome del cliente: ");
+            cognome = scanner.nextLine().trim();
+        } while (cognome.isEmpty());
 
-        System.out.print("Inserisci il numero massimo di kart che il cliente può noleggiare: ");
-        int numeroMassimoKart = scanner.nextInt();
-        scanner.nextLine();
+        do {
+            System.out.print("Inserisci il codice fiscale del cliente: ");
+            codiceFiscale = scanner.nextLine().trim();
+        } while (!codiceFiscale.matches("[A-Z]{6}[0-9]{2}[A-Z][0-9]{2}[A-Z][0-9]{3}[A-Z]"));
 
-        System.out.print("Inserisci l'indirizzo del cliente: ");
-        String indirizzo = scanner.nextLine();
+        do {
+            System.out.print("Inserisci il numero massimo di kart che il cliente può noleggiare: ");
+            if (scanner.hasNextInt()) {
+                numeroMassimoKart = scanner.nextInt();
+                scanner.nextLine();
+                break;
+            }
+            scanner.nextLine();
+        } while (true);
 
-        System.out.print("Inserisci il numero di telefono del cliente: ");
-        String telefono = scanner.nextLine();
+        do {
+            System.out.print("Inserisci l'indirizzo del cliente: ");
+            indirizzo = scanner.nextLine().trim();
+        } while (indirizzo.isEmpty());
+
+        do {
+            System.out.print("Inserisci il numero di telefono del cliente: ");
+            telefono = scanner.nextLine().trim();
+        } while (telefono.isEmpty());
+        
         return new Cliente(nome, cognome, numeroMassimoKart, codiceFiscale, indirizzo, telefono);
     }
 

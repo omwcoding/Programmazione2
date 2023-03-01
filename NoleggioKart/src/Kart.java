@@ -41,7 +41,7 @@ public abstract class Kart {
     public void setNoleggioCorrente(Noleggio noleggioCorrente) {
         this.noleggioCorrente = noleggioCorrente;
     }
-
+    
 
 
     //metodo per registrare un kart da tastiera
