@@ -1,3 +1,4 @@
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Main {
@@ -14,7 +15,6 @@ public class Main {
             System.out.println("4. Stampa su file l'elenco dei kart noleggiati da un cliente in un intervallo di tempo specificato");
             System.out.println("0. Esci dal programma");
         
-
             try {
                 scelta = scanner.nextInt();
                 scanner.nextLine();  // pulisci il buffer
@@ -45,8 +45,11 @@ public class Main {
 
                 case 3:
 
-                    Noleggio.registraDateDaTastiera();  //registra le date da tastiera richiamando il metodo registraDateDaTastiera
-                
+                    Noleggio.IntervalloDate intervallo = Noleggio.richiestaIntervalloDate(scanner);
+
+                    System.out.println("Hai inserito le seguenti date:");
+                    System.out.println("Data di inizio: " + intervallo.getDataInizio().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+                    System.out.println("Data di fine: " + intervallo.getDataFine().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
                     // esegui l'opzione 3
                     break;
 

@@ -2,7 +2,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Date;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Noleggio {
@@ -76,61 +75,60 @@ public class Noleggio {
         kart.setNoleggioCorrente(noleggio);
     }
     */
-
-    public static LocalDate[] registraDateDaTastiera(){
-        Scanner scanner = new Scanner(System.in); 
-        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");  //formato data
-        
+    public static IntervalloDate richiestaIntervalloDate(Scanner scanner) {
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate dataInizio = null;
-        while (dataInizio == null) {
-            System.out.println("Inserisci la data di inizio nel formato GG-MM-AAAA:");
-            String input = "";
-            try {
-                input = scanner.nextLine().trim().replace(" ", "-");  //rimuove gli spazi e sostituisce gli spazi con un trattino
-            } catch (NoSuchElementException e) {
-                System.out.println("Nessuna linea disponibile. Riprova.");
-                continue;
-            }
-            try {
-                LocalDate parsedDate = LocalDate.parse(input, outputFormatter);  //converte la stringa in data
-                if (parsedDate.isAfter(LocalDate.now())) {
-                    System.out.println("La data di inizio deve essere precedente o uguale alla data odierna!");
-                    continue;
-                }
-                dataInizio = parsedDate;    //assegna la data di inizio
-            } catch (DateTimeParseException e) {
-                System.out.println("Formato data non valido. Riprova!");
-            }
-        }
-        
         LocalDate dataFine = null;
-        while (dataFine == null) {
-        System.out.println("Inserisci la data di fine nel formato GG-MM-AAAA:");
-            String input = null;
-            try {
-                input = scanner.nextLine().trim().replace(" ", "-");
-            } catch (NoSuchElementException e) {
-                System.out.println("Non è stato inserito alcun valore.");
-                continue;
-            }
-            if (input.isEmpty()) {
-                System.out.println("Non è stato inserito alcun valore.");
-                continue;
-            }
-            try {
-                LocalDate parsedDate = LocalDate.parse(input, outputFormatter);
-                if (parsedDate.isBefore(dataInizio)) {
-                    System.out.println("La data di fine deve essere successiva o uguale alla data di inizio!");
-                    continue;
+        while (dataInizio == null || dataFine == null) {
+            if (dataInizio == null) {
+                System.out.println("Inserisci la data di inizio nel formato GG-MM-AAAA:");
+                String input = scanner.nextLine().trim().replace(" ", "-");
+                try {
+                    LocalDate parsedDate = LocalDate.parse(input, outputFormatter);
+                    if (parsedDate.isAfter(LocalDate.now())) {
+                        System.out.println("La data di inizio deve essere uguale o minore alla data corrente.");
+                        continue;
+                    }
+                    dataInizio = parsedDate;
+                } catch (DateTimeParseException e) {
+                    System.out.println("Formato data non valido. Riprova.");
                 }
-                dataFine = parsedDate;
-            } catch (DateTimeParseException e) {
-                System.out.println("Formato data non valido. Riprova!");
+            }
+            if (dataFine == null) {
+                System.out.println("Inserisci la data di fine nel formato GG-MM-AAAA:");
+                String input = scanner.nextLine().trim().replace(" ", "-");
+                try {
+                    LocalDate parsedDate = LocalDate.parse(input, outputFormatter);
+                    if (parsedDate.isBefore(dataInizio)) {
+                        System.out.println("La data di fine deve essere successiva o uguale alla data di inizio.");
+                        continue;
+                    }
+                    dataFine = parsedDate;
+                } catch (DateTimeParseException e) {
+                    System.out.println("Formato data non valido. Riprova.");
+                }
             }
         }
-        scanner.close();
-        LocalDate[] dateArray = {dataInizio, dataFine};
-        return dateArray;
+        return new IntervalloDate(dataInizio, dataFine);
     }
+    
+    public static class IntervalloDate {
+        private LocalDate dataInizio;
+        private LocalDate dataFine;
+    
+        public IntervalloDate(LocalDate dataInizio, LocalDate dataFine) {
+            this.dataInizio = dataInizio;
+            this.dataFine = dataFine;
+        }
+    
+        public LocalDate getDataInizio() {
+            return dataInizio;
+        }
+    
+        public LocalDate getDataFine() {
+            return dataFine;
+        }
+    }
+    
 }
 
