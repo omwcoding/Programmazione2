@@ -9,10 +9,11 @@ public class Main {
 
         while (scelta != 0){
             System.out.println("## Scegli un'opzione: ##");
-            System.out.println("1. Inserisci uno o più nuovi clienti");
+            System.out.println("1. Inserisci un nuovo cliente (o più)");
             System.out.println("2. Mostra tutti i clienti registrati");
             System.out.println("3. Mostra l'elenco dei kart acquistati in un intervallo di tempo specificato");
             System.out.println("4. Stampa su file l'elenco dei kart noleggiati da un cliente in un intervallo di tempo specificato");
+            System.out.println("5. [ Funzionalità extra ]");
             System.out.println("0. Esci dal programma");
         
             try {
@@ -24,25 +25,22 @@ public class Main {
                     continue;
             }
 
-            switch (scelta) {
-                
+            switch (scelta) {        
+                //FATTO: Inserisci un nuovo cliente (o più)
                 case 1:
-                    String decisione = "y";
-                
-                    while (decisione.equals("y")){
-                        Cliente nuovoCliente = Cliente.registraClienteDaTastiera(scanner);  //registra un nuovo cliente da tastiera
-                        Cliente.salvaClientiSuFile(nuovoCliente, "Clienti.json");       //salva il cliente su file
-                        System.out.println("Cliente registrato come: [ " + nuovoCliente + " ]"); //ci mostra il cliente registrato
-                        System.out.println("Continuare? y/n");      //chiede se si vuole continuare
-                        decisione = scanner.nextLine().toLowerCase();       //converte la stringa in minuscolo
-                    }
+
+                    Cliente.richiestaDatiCliente();
                     break;
                 
+                //FATTO: Mostra tutti i clienti registrati
+                //BUG
                 case 2:
 
                     Cliente.mostraClientiRegistrati();  //mostra i clienti registrati richiamando il metodo mostraClientiRegistrati
+                    System.out.println("Tornando al menu principale...");
                     break;
-
+                
+                //FARE: Mostra l'elenco dei kart acquistati in un intervallo di tempo specificato
                 case 3:
 
                     Noleggio.IntervalloDate intervallo = Noleggio.richiestaIntervalloDate(scanner);
@@ -50,12 +48,26 @@ public class Main {
                     System.out.println("Hai inserito le seguenti date:");
                     System.out.println("Data di inizio: " + intervallo.getDataInizio().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
                     System.out.println("Data di fine: " + intervallo.getDataFine().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
-                    // esegui l'opzione 3
+
                     break;
+                
 
-                case 4:
+                //FARE: Stampa su file l'elenco dei kart noleggiati da un cliente in un intervallo di tempo specificato
+                case 4: 
+                    
+                    Noleggio.IntervalloDate intervallo2 = Noleggio.richiestaIntervalloDate(scanner);
 
-                    // esegui l'opzione 4
+                    break;
+                
+                case 5:
+                    
+                    //Registra un nuovo kart da tastiera
+                    //Vedere Kart disponibili(non noleggiati)?
+                    //Modificare cliente esistente (eliminare probabilmente inutile come funzione)
+                    //Eliminare Kart (magari si rompono o altro)
+                    //Assegnare Kart ad un cliente (effettivo noleggio)
+                    //...
+
                     break;
 
                 case 0:

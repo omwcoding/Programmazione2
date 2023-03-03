@@ -176,4 +176,30 @@ public class Cliente implements Serializable{
         }
         System.out.println();
     }
+
+    public static void richiestaDatiCliente(){
+        String decisione = "y";
+        Scanner scanner = new Scanner(System.in);
+        boolean continuaInserimento = true;
+        
+        while (decisione.equals("y")){
+            Cliente nuovoCliente = Cliente.registraClienteDaTastiera(scanner);  //registra un nuovo cliente da tastiera
+            Cliente.salvaClientiSuFile(nuovoCliente, "Clienti.json");       //salva il cliente su file
+            System.out.println("Cliente registrato come: [ " + nuovoCliente + " ]"); //ci mostra il cliente registrato
+            
+            System.out.println("Inserire nuovo cliente? y/n");      //chiede se si vuole continuare
+            
+            // Verifica se c'è ancora input disponibile prima di chiamare il metodo nextLine()
+            if (scanner.hasNextLine()) {
+                decisione = scanner.nextLine().toLowerCase();       //converte la stringa in minuscolo
+            } else {
+                decisione = "n";
+            }
+
+            if (decisione.equals("n")) {
+                continuaInserimento = false;
+            }
+        }
+    }
+    
 }
