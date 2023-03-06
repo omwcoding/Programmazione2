@@ -49,6 +49,10 @@ public class Main {
                     System.out.println("Data di inizio: " + intervallo.getDataInizio().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
                     System.out.println("Data di fine: " + intervallo.getDataFine().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
 
+                    //Leggi lista kart noleggiati dal file
+                    //Filtra lista kart noleggiati per intervallo di tempo specificato
+                    //Stampa su schermo la lista filtrata
+
                     break;
                 
 
@@ -56,6 +60,10 @@ public class Main {
                 case 4: 
                     
                     Noleggio.IntervalloDate intervallo2 = Noleggio.richiestaIntervalloDate(scanner);
+                    //Leggi lista karat noleggiati
+                    //Filtra lista kart noleggiati per cliente
+                    //Filtra lista kart noleggiati per intervallo di tempo specificato
+                    //Stampa su file la lista filtrata
 
                     break;
                 
