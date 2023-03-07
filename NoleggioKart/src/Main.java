@@ -32,8 +32,6 @@ public class Main {
                     Cliente.richiestaDatiCliente();
                     break;
                 
-                //FATTO: Mostra tutti i clienti registrati
-                //BUG
                 case 2:
 
                     Cliente.mostraClientiRegistrati();  //mostra i clienti registrati richiamando il metodo mostraClientiRegistrati
@@ -50,6 +48,8 @@ public class Main {
                     System.out.println("Data di fine: " + intervallo.getDataFine().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
 
                     //Leggi lista kart noleggiati dal file
+                    
+
                     //Filtra lista kart noleggiati per intervallo di tempo specificato
                     //Stampa su schermo la lista filtrata
 
