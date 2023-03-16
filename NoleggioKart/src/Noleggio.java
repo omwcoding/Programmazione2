@@ -131,9 +131,5 @@ public class Noleggio {
         }
     }
 
-    public static List<Kart> leggiKartdaFile (String filepath) {
-
-    }
-    
 }
 
