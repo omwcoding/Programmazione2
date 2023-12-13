@@ -59,7 +59,7 @@ public class Main {
                 //FARE: Stampa su file l'elenco dei kart noleggiati da un cliente in un intervallo di tempo specificato
                 case 4: 
                     
-                    Noleggio.IntervalloDate intervallo2 = Noleggio.richiestaIntervalloDate(scanner);
+                    //Noleggio.IntervalloDate intervallo2 = Noleggio.richiestaIntervalloDate(scanner);
                     //Leggi lista karat noleggiati
                     //Filtra lista kart noleggiati per cliente
                     //Filtra lista kart noleggiati per intervallo di tempo specificato
