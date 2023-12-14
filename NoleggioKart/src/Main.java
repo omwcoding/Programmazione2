@@ -13,7 +13,6 @@ public class Main {
             System.out.println("2. Mostra tutti i clienti registrati");
             System.out.println("3. Mostra l'elenco dei kart acquistati in un intervallo di tempo specificato");
             System.out.println("4. Stampa su file l'elenco dei kart noleggiati da un cliente in un intervallo di tempo specificato");
-            System.out.println("5. [ Funzionalità extra ]");
             System.out.println("0. Esci dal programma");
         
             try {
@@ -64,17 +63,6 @@ public class Main {
                     //Filtra lista kart noleggiati per cliente
                     //Filtra lista kart noleggiati per intervallo di tempo specificato
                     //Stampa su file la lista filtrata
-
-                    break;
-                
-                case 5:
-                    
-                    //Registra un nuovo kart da tastiera
-                    //Vedere Kart disponibili(non noleggiati)?
-                    //Modificare cliente esistente (eliminare probabilmente inutile come funzione)
-                    //Eliminare Kart (magari si rompono o altro)
-                    //Assegnare Kart ad un cliente (effettivo noleggio)
-                    //...
 
                     break;
 
