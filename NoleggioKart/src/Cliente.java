@@ -211,7 +211,7 @@ public class Cliente implements Serializable{
             Cliente.salvaClientiSuFile(nuovoCliente, "Clienti.json");       //salva il cliente su file
             System.out.println("Cliente registrato come: [ " + nuovoCliente + " ]"); //ci mostra il cliente registrato
             
-            System.out.println("Inserire nuovo cliente?\nInserisci 'y' per dire sì, altrimenti esci con 'n'/n");      //chiede se si vuole continuare
+            System.out.println("Inserire nuovo cliente?\nInserisci 'y' per continuare, altrimenti premi un altro tasto");      //chiede se si vuole continuare
             
             // Verifica se c'è ancora input disponibile prima di chiamare il metodo nextLine()
             if (scanner.hasNextLine()) {
@@ -219,7 +219,6 @@ public class Cliente implements Serializable{
             } else {
                 decisione = "n";
             }
-    
             if (decisione.equals("n")) {
                 continuaInserimento = false;
             }
