@@ -71,6 +71,8 @@ public class GestoreMenu {
                 //Modifica i dati di un kart tra quelli disponibili
                 //Modifica i dati di un cliente tra quelli registrati
                 //Rimuovi un cliente tra quelli registrati
+                //Visualizza l’elenco dei kart disponibili
+                //Visualizza l’elenco dei kart noleggiati attualmente
                 //... e altro
                 break;
 
