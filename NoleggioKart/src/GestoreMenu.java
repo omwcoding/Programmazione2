@@ -8,6 +8,7 @@ public class GestoreMenu {
         System.out.println("2. Mostra tutti i clienti registrati");
         System.out.println("3. Mostra l'elenco dei kart acquistati in un intervallo di tempo specificato");
         System.out.println("4. Stampa su file l'elenco dei kart noleggiati da un cliente in un intervallo di tempo specificato");
+        System.out.println("5. Funzionalità da amministratore (in costruzione)");
         System.out.println("0. Esci dal programma");
     
         int scelta = -1;
@@ -40,6 +41,7 @@ public class GestoreMenu {
                 //Leggi lista kart noleggiati dal file
                 //Filtra lista kart noleggiati per intervallo di tempo specificato
                 //Stampa su schermo la lista filtrata
+                //l’elenco deve essere ordinato in base alla tipo di kart (medio, avanzato, base) e, in caso di stesso tipo, in base al costo del noleggio (dal costo più alto)
                 break;
                 
 
@@ -59,6 +61,17 @@ public class GestoreMenu {
                 //Filtra lista kart noleggiati per cliente
                 //Filtra lista kart noleggiati per intervallo di tempo specificato
                 //Stampa su file la lista filtrata
+                //Tale elenco deve essere  ordinato per data di inizio noleggio. L’elenco riporterà tutte le informazioni disponibili.
+                break;
+            
+            case 5:
+                System.out.println("Funzionalità da amministratore in costruzione...Tornando al menu principale...\n");
+                //Inserisci un kart tra quelli disponibili
+                //Rimuovi un kart tra quelli disponibili
+                //Modifica i dati di un kart tra quelli disponibili
+                //Modifica i dati di un cliente tra quelli registrati
+                //Rimuovi un cliente tra quelli registrati
+                //... e altro
                 break;
 
             case 0:
