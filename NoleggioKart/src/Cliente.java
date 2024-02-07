@@ -181,7 +181,6 @@ public class Cliente implements Serializable{
         }
     }
     
-    
     public static void mostraClientiRegistrati() {
         List<Cliente> clientiLetti = leggiClientiDaFile("Clienti.json");
         System.out.println("## Elenco clienti registrati: ##\n");
@@ -218,7 +217,6 @@ public class Cliente implements Serializable{
             }
         }
     }
-    
     
     public static boolean isCodiceFiscaleAlreadyUsed(String codiceFiscale, List<Cliente> clienti) {
         for (Cliente cliente : clienti) {
