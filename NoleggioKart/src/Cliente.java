@@ -88,25 +88,25 @@ public class Cliente implements Serializable{
         } while (cognome.isEmpty());
     
         boolean codiceFiscaleValido = false;
-    boolean codiceFiscaleUnico = false;
-    do {
-        System.out.print("Inserisci il codice fiscale del cliente: ");
-        codiceFiscale = scanner.nextLine().trim();
-        
-        // Verifica se il codice fiscale è valido
-        if (!codiceFiscale.matches("[A-Z]{6}[0-9]{2}[A-Z][0-9]{2}[A-Z][0-9]{3}[A-Z]")) {
-            System.out.println("Il codice fiscale inserito non è valido. Riprova.");
-        } else {
-            codiceFiscaleValido = true;
-            // Verifica se il codice fiscale è unico
-            if (isCodiceFiscaleAlreadyUsed(codiceFiscale, clienti)) {
-                System.out.println("Il codice fiscale inserito è già presente. Riprova.");
+        boolean codiceFiscaleUnico = false;
+        do {
+            System.out.print("Inserisci il codice fiscale del cliente: ");
+            codiceFiscale = scanner.nextLine().trim();
+            
+            // Verifica se il codice fiscale è valido
+            if (!codiceFiscale.matches("[A-Z]{6}[0-9]{2}[A-Z][0-9]{2}[A-Z][0-9]{3}[A-Z]")) {
+                System.out.println("Il codice fiscale inserito non è valido. Riprova.");
             } else {
-                codiceFiscaleUnico = true;
+                codiceFiscaleValido = true;
+                // Verifica se il codice fiscale è unico
+                if (isCodiceFiscaleAlreadyUsed(codiceFiscale, clienti)) {
+                    System.out.println("Il codice fiscale inserito è già presente. Riprova.");
+                } else {
+                    codiceFiscaleUnico = true;
+                }
             }
-        }
-    } while (!codiceFiscaleValido || !codiceFiscaleUnico);
-    
+        } while (!codiceFiscaleValido || !codiceFiscaleUnico);
+        
         do {
             System.out.print("Inserisci il numero massimo di kart che il cliente può noleggiare: ");
             if (scanner.hasNextInt()) {
@@ -116,7 +116,7 @@ public class Cliente implements Serializable{
             }
             scanner.nextLine();
         } while (true);
-    
+        
         do {
             System.out.print("Inserisci l'indirizzo del cliente: ");
             indirizzo = scanner.nextLine().trim();
