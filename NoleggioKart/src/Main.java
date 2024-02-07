@@ -5,7 +5,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int scelta = -1;
-        System.out.println("## Benvenuto nel programma di gestione noleggio kart!  ##");
+        System.out.println("## Benvenuto nel programma di gestione NoleggioKart!  ##");
 
         while (scelta != 0){
             System.out.println("## Scegli un'opzione: ##");
@@ -25,20 +25,22 @@ public class Main {
             }
 
             switch (scelta) {        
-                //FATTO: Inserisci un nuovo cliente (o più)
                 case 1:
+                //Terminato: Registra con successo un cliente
 
                     Cliente.richiestaDatiCliente();
                     break;
-                
+
                 case 2:
+                //Terminato: Mostra tutti i clienti registrati su file
+                //TODO: Aggiungere controllo se non ci sono clienti registrati
 
                     Cliente.mostraClientiRegistrati();  //mostra i clienti registrati richiamando il metodo mostraClientiRegistrati
                     System.out.println("Tornando al menu principale...");
                     break;
                 
-                //FARE: Mostra l'elenco dei kart acquistati in un intervallo di tempo specificato
                 case 3:
+                //TODO: Mostra l'elenco dei kart acquistati in un intervallo di tempo specificato
 
                     Noleggio.IntervalloDate intervallo = Noleggio.richiestaIntervalloDate(scanner);
 
@@ -47,19 +49,17 @@ public class Main {
                     System.out.println("Data di fine: " + intervallo.getDataFine().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
 
                     //Leggi lista kart noleggiati dal file
-                    
-
                     //Filtra lista kart noleggiati per intervallo di tempo specificato
                     //Stampa su schermo la lista filtrata
 
                     break;
                 
 
-                //FARE: Stampa su file l'elenco dei kart noleggiati da un cliente in un intervallo di tempo specificato
                 case 4: 
+                //TODO: Stampa su file l'elenco dei kart noleggiati da un cliente in un intervallo di tempo specificato
                     
                     //Noleggio.IntervalloDate intervallo2 = Noleggio.richiestaIntervalloDate(scanner);
-                    //Leggi lista karat noleggiati
+                    //Leggi lista kart noleggiati
                     //Filtra lista kart noleggiati per cliente
                     //Filtra lista kart noleggiati per intervallo di tempo specificato
                     //Stampa su file la lista filtrata
@@ -67,15 +67,13 @@ public class Main {
                     break;
 
                 case 0:
-
-                    System.out.println("Uscita dal programma...");
+                    System.out.println("Grazie per aver utilizzato NoleggioKart! Uscita in corso...");
                     break;
 
                 default:
-
                     System.out.println("Scelta non valida!");
             }        
         }
-    scanner.close();
+    scanner.close(); // chiudi lo scanner per evitare memory leak
     }
 }

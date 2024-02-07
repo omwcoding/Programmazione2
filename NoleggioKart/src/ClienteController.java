@@ -11,6 +11,7 @@ public class ClienteController {
 
     public ClienteController() {
         this.clienti = new HashMap<>();
+        
     }
 
     // Aggiungi un cliente all'hashmap
