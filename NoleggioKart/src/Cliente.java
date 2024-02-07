@@ -12,7 +12,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 
-@SuppressWarnings("serial")
 public class Cliente implements Serializable{
     private String nome;
     private String codiceFiscale;
@@ -35,65 +34,79 @@ public class Cliente implements Serializable{
     public String getNome() {
         return nome;
     }
-    public String setNome(){
-        return nome;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
     public String getCodiceFiscale() {
         return codiceFiscale;
     }
-    public String setCodiceFiscale(){
-        return codiceFiscale;
+    public void setCodiceFiscale(String codiceFiscale) {
+        this.codiceFiscale = codiceFiscale;
     }
     public int getNumeroMassimoKart() {
         return numeroMassimoKart;
     }
-    public int setNumeroMassimoKart(){
-        return numeroMassimoKart;
+    public void setNumeroMassimoKart(int numeroMassimoKart) {
+        this.numeroMassimoKart = numeroMassimoKart;
     }
     public String getCognome() {
         return cognome;
     }
-    public String setCognome(){
-        return cognome;
+    public void setCognome(String cognome) {
+        this.cognome = cognome;
     }
     public String getIndirizzo() {
         return indirizzo;
     }
-    public String setIndirizzo(){
-        return indirizzo;
+    public void setIndirizzo(String indirizzo) {
+        this.indirizzo = indirizzo;
     }
     public String getTelefono() {
         return telefono;
     }
-    public String setTelefono(){
-        return telefono;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
     //metodo per registrare un cliente da tastiera  
-    public static Cliente registraClienteDaTastiera(Scanner scanner) {
-
+    public static Cliente registraClienteDaTastiera(Scanner scanner, List<Cliente> clienti) {
         String nome = "";
         String cognome = "";
         String codiceFiscale = "";
         int numeroMassimoKart = 0;
         String indirizzo = "";
         String telefono = "";
-
+    
         do {
             System.out.print("Inserisci il nome del cliente: ");
             nome = scanner.nextLine().trim();
         } while (nome.isEmpty());
-
+    
         do {
             System.out.print("Inserisci il cognome del cliente: ");
             cognome = scanner.nextLine().trim();
         } while (cognome.isEmpty());
-
-        do {
-            System.out.print("Inserisci il codice fiscale del cliente: ");
-            codiceFiscale = scanner.nextLine().trim();
-        } while (!codiceFiscale.matches("[A-Z]{6}[0-9]{2}[A-Z][0-9]{2}[A-Z][0-9]{3}[A-Z]"));
-
+    
+        boolean codiceFiscaleValido = false;
+    boolean codiceFiscaleUnico = false;
+    do {
+        System.out.print("Inserisci il codice fiscale del cliente: ");
+        codiceFiscale = scanner.nextLine().trim();
+        
+        // Verifica se il codice fiscale è valido
+        if (!codiceFiscale.matches("[A-Z]{6}[0-9]{2}[A-Z][0-9]{2}[A-Z][0-9]{3}[A-Z]")) {
+            System.out.println("Il codice fiscale inserito non è valido. Riprova.");
+        } else {
+            codiceFiscaleValido = true;
+            // Verifica se il codice fiscale è unico
+            if (isCodiceFiscaleAlreadyUsed(codiceFiscale, clienti)) {
+                System.out.println("Il codice fiscale inserito è già presente. Riprova.");
+            } else {
+                codiceFiscaleUnico = true;
+            }
+        }
+    } while (!codiceFiscaleValido || !codiceFiscaleUnico);
+    
         do {
             System.out.print("Inserisci il numero massimo di kart che il cliente può noleggiare: ");
             if (scanner.hasNextInt()) {
@@ -103,12 +116,12 @@ public class Cliente implements Serializable{
             }
             scanner.nextLine();
         } while (true);
-
+    
         do {
             System.out.print("Inserisci l'indirizzo del cliente: ");
             indirizzo = scanner.nextLine().trim();
         } while (indirizzo.isEmpty());
-
+    
         do {
             System.out.print("Inserisci il numero di telefono del cliente: ");
             telefono = scanner.nextLine().trim();
@@ -116,6 +129,7 @@ public class Cliente implements Serializable{
         
         return new Cliente(nome, cognome, numeroMassimoKart, codiceFiscale, indirizzo, telefono);
     }
+    
 
     @Override
     public String toString() {
@@ -169,7 +183,7 @@ public class Cliente implements Serializable{
     
     
     public static void mostraClientiRegistrati() {
-        List<Cliente> clientiLetti = leggiClientiDaFile("C:\\Users\\Omar\\Desktop\\Coding\\Programmazione2\\Clienti.json");
+        List<Cliente> clientiLetti = leggiClientiDaFile("Clienti.json");
         System.out.println("## Elenco clienti registrati: ##\n");
         for (Cliente c : clientiLetti) {
             System.out.println(c);
@@ -180,10 +194,13 @@ public class Cliente implements Serializable{
     public static void richiestaDatiCliente(){
         String decisione = "y";
         Scanner scanner = new Scanner(System.in);
+        @SuppressWarnings("unused")
         boolean continuaInserimento = true;
         
+        List<Cliente> clienti = leggiClientiDaFile("Clienti.json"); // Leggi l'elenco dei clienti dal file
+    
         while (decisione.equals("y")){
-            Cliente nuovoCliente = Cliente.registraClienteDaTastiera(scanner);  //registra un nuovo cliente da tastiera
+            Cliente nuovoCliente = Cliente.registraClienteDaTastiera(scanner, clienti);  // Passa l'elenco dei clienti
             Cliente.salvaClientiSuFile(nuovoCliente, "Clienti.json");       //salva il cliente su file
             System.out.println("Cliente registrato come: [ " + nuovoCliente + " ]"); //ci mostra il cliente registrato
             
@@ -195,11 +212,21 @@ public class Cliente implements Serializable{
             } else {
                 decisione = "n";
             }
-
+    
             if (decisione.equals("n")) {
                 continuaInserimento = false;
             }
         }
+    }
+    
+    
+    public static boolean isCodiceFiscaleAlreadyUsed(String codiceFiscale, List<Cliente> clienti) {
+        for (Cliente cliente : clienti) {
+            if (cliente.getCodiceFiscale().equalsIgnoreCase(codiceFiscale)) {
+                return true;
+            }
+        }
+        return false;
     }
     
 }

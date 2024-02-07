@@ -1,10 +1,5 @@
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 import java.lang.StringBuilder;
-import com.google.gson.Gson;
 
 public abstract class Kart {
     private String marca;
@@ -16,6 +11,7 @@ public abstract class Kart {
         this.marca = marca;
         this.numeroSeriale = numeroSeriale;
         this.tipoCambio = tipoCambio;
+        this.noleggioCorrente = noleggioCorrente; // Added this line
     }
 
     public String getMarca() {
@@ -109,8 +105,8 @@ public abstract class Kart {
             .append(" Chilometri percorsi: ").append(this.getClass().getSimpleName().equals("KartAvanzato") ? ((KartAvanzato)this).getContaChilometri() : "N/A");
         return sb.toString();
     }
-    
-    
+
+    public abstract double calcolaCostoNoleggio();
    
 }
 

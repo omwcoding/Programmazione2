@@ -1,19 +1,18 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.Date;
-import java.util.List;
+import java.time.temporal.ChronoUnit;
 import java.util.Scanner;
 
 public class Noleggio {
     private Kart kartNoleggiato;
     private Cliente clienteAssociato;
     private int penale;
-    private Date dataInizioNoleggio;
-    private Date dataFineNoleggio;
-    private Date dataConsegnaNoleggio; //?? in caso di consegna in ritardo potremmo usare questa data per calcolare la penale
+    private LocalDate dataInizioNoleggio;
+    private LocalDate dataFineNoleggio;
+    private LocalDate dataConsegnaNoleggio; //?? in caso di consegna in ritardo potremmo usare questa data per calcolare la penale
     
-    public Noleggio(Kart kartNoleggiato, Cliente clienteAssociato, int penale, Date dataInizioNoleggio, Date dataFineNoleggio) {
+    public Noleggio(Kart kartNoleggiato, Cliente clienteAssociato, int penale, LocalDate dataInizioNoleggio, LocalDate dataFineNoleggio) {
         this.kartNoleggiato = kartNoleggiato;
         this.clienteAssociato = clienteAssociato;
         this.penale = penale;
@@ -45,27 +44,27 @@ public class Noleggio {
         this.penale = penale;
     }
 
-    public Date getDataInizioNoleggio() {
+    public LocalDate getDataInizioNoleggio() {
         return dataInizioNoleggio;
     }
 
-    public void setDataInizioNoleggio(Date dataInizioNoleggio) {
+    public void setDataInizioNoleggio(LocalDate dataInizioNoleggio) {
         this.dataInizioNoleggio = dataInizioNoleggio;
     }
 
-    public Date getDataFineNoleggio() {
+    public LocalDate getDataFineNoleggio() {
         return dataFineNoleggio;
     }
 
-    public void setDataFineNoleggio(Date dataFineNoleggio) {
+    public void setDataFineNoleggio(LocalDate dataFineNoleggio) {
         this.dataFineNoleggio = dataFineNoleggio;
     }
 
-    public Date getDataConsegnaNoleggio() {
+    public LocalDate getDataConsegnaNoleggio() {
         return dataConsegnaNoleggio;
     }
 
-    public void setDataConsegnaNoleggio(Date dataConsegnaNoleggio) {
+    public void setDataConsegnaNoleggio(LocalDate dataConsegnaNoleggio) {
         this.dataConsegnaNoleggio = dataConsegnaNoleggio;
     }
 
@@ -131,5 +130,21 @@ public class Noleggio {
         }
     }
 
+    public double calcolaCostoNoleggio() {
+    double costo = 0.0;
+    
+    if (kartNoleggiato != null && dataInizioNoleggio != null && dataFineNoleggio != null) {
+        // Calcola la durata del noleggio in giorni
+        long durataNoleggio = ChronoUnit.DAYS.between(dataInizioNoleggio, dataFineNoleggio);
+        
+        // Ottieni il costo del noleggio del kart
+        double costoKart = kartNoleggiato.calcolaCostoNoleggio();
+        
+        // Calcola il costo totale del noleggio
+        costo = costoKart * durataNoleggio;
+    }
+    
+    return costo;
+    }
 }
 

@@ -24,4 +24,13 @@ public class KartAvanzato extends Kart {
     public void setFrenoADisco(boolean frenoADisco) {
         this.frenoADisco = frenoADisco;
     }
+
+    @Override
+    public double calcolaCostoNoleggio() {
+        // Aggiungi qui la logica per calcolare il costo del noleggio per KartAvanzato
+        // Ad esempio:
+        double costoBase = 40.0; // Costo base del noleggio per KartAvanzato
+        // Aggiungi eventuali costi aggiuntivi in base alle caratteristiche avanzate del kart
+        return costoBase;
+}
 }
