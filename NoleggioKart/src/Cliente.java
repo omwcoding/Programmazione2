@@ -70,12 +70,12 @@ public class Cliente implements Serializable{
 
     //metodo per registrare un cliente da tastiera  
     public static Cliente registraClienteDaTastiera(Scanner scanner, List<Cliente> clienti) {
-        String nome = "";
-        String cognome = "";
-        String codiceFiscale = "";
-        int numeroMassimoKart = 0;
-        String indirizzo = "";
-        String telefono = "";
+        String nome;
+        String cognome;
+        String codiceFiscale;
+        int numeroMassimoKart;
+        String indirizzo;
+        String telefono;
     
         do {
             System.out.print("Inserisci il nome del cliente: ");
@@ -87,48 +87,56 @@ public class Cliente implements Serializable{
             cognome = scanner.nextLine().trim();
         } while (cognome.isEmpty());
     
-        boolean codiceFiscaleValido = false;
-        boolean codiceFiscaleUnico = false;
+        boolean codiceFiscaleValido;
+        boolean codiceFiscaleUnico;
         do {
-            System.out.print("Inserisci il codice fiscale del cliente: ");
+            System.out.print("Inserisci il codice fiscale del cliente (es. RSSMRA80A01H501Z): ");
             codiceFiscale = scanner.nextLine().trim();
-            
-            // Verifica se il codice fiscale è valido
-            if (!codiceFiscale.matches("[A-Z]{6}[0-9]{2}[A-Z][0-9]{2}[A-Z][0-9]{3}[A-Z]")) {
-                System.out.println("Il codice fiscale inserito non è valido. Riprova.");
-            } else {
-                codiceFiscaleValido = true;
-                // Verifica se il codice fiscale è unico
-                if (isCodiceFiscaleAlreadyUsed(codiceFiscale, clienti)) {
-                    System.out.println("Il codice fiscale inserito è già presente. Riprova.");
-                } else {
-                    codiceFiscaleUnico = true;
-                }
+    
+            // Controllo se il codice fiscale è valido e unico
+            codiceFiscaleValido = codiceFiscale.matches("[A-Z]{6}[0-9]{2}[A-Z][0-9]{2}[A-Z][0-9]{3}[A-Z]");
+            codiceFiscaleUnico = codiceFiscaleValido && !isCodiceFiscaleAlreadyUsed(codiceFiscale, clienti);
+    
+            if (!codiceFiscaleValido) {
+                System.out.println("Il codice fiscale inserito non è valido. Assicurati di inserire un codice fiscale nel formato corretto.");
+            } else if (!codiceFiscaleUnico) {
+                System.out.println("Il codice fiscale inserito è già presente. Assicurati di inserire un codice fiscale unico.");
             }
         } while (!codiceFiscaleValido || !codiceFiscaleUnico);
-        
+    
         do {
             System.out.print("Inserisci il numero massimo di kart che il cliente può noleggiare: ");
-            if (scanner.hasNextInt()) {
-                numeroMassimoKart = scanner.nextInt();
-                scanner.nextLine();
-                break;
+            while (!scanner.hasNextInt()) {
+                System.out.print("Devi inserire un numero intero valido per il numero massimo di kart: ");
+                scanner.next();
             }
-            scanner.nextLine();
-        } while (true);
-        
+            numeroMassimoKart = scanner.nextInt();
+            scanner.nextLine(); // Consuma il resto della linea
+            if (numeroMassimoKart <= 0) {
+                System.out.println("Il numero massimo di kart deve essere un numero intero positivo.");
+            }
+        } while (numeroMassimoKart <= 0);
+    
         do {
             System.out.print("Inserisci l'indirizzo del cliente: ");
             indirizzo = scanner.nextLine().trim();
+            if (indirizzo.isEmpty()) {
+                System.out.println("L'indirizzo non può essere vuoto. Assicurati di inserire un indirizzo valido.");
+            }
         } while (indirizzo.isEmpty());
     
         do {
             System.out.print("Inserisci il numero di telefono del cliente: ");
             telefono = scanner.nextLine().trim();
+            if (telefono.isEmpty()) {
+                System.out.println("Il numero di telefono non può essere vuoto. Assicurati di inserire un numero di telefono valido.");
+            }
         } while (telefono.isEmpty());
-        
+    
         return new Cliente(nome, cognome, numeroMassimoKart, codiceFiscale, indirizzo, telefono);
     }
+    
+    
     
 
     @Override
