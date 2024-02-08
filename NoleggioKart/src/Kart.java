@@ -136,12 +136,17 @@ public abstract class Kart {
 
     public static List<Kart> leggiKartDaFile(String filePath) {
         Gson gson = new GsonBuilder()
-                .registerTypeAdapter(Kart.class, new KartAdapter())
-                .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
-                .create();
+            .registerTypeAdapter(Kart.class, new KartAdapter())
+            .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
+            .create();
         List<Kart> karts = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-            JsonElement jsonElement = JsonParser.parseReader(reader);
+            StringBuilder jsonString = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                jsonString.append(line);
+            }
+            JsonElement jsonElement = JsonParser.parseString(jsonString.toString());
             if (jsonElement.isJsonArray()) {
                 TypeToken<List<Kart>> typeToken = new TypeToken<List<Kart>>(){};
                 karts = gson.fromJson(jsonElement, typeToken.getType());
@@ -152,6 +157,7 @@ public abstract class Kart {
         }
         return karts;
     }
+    
 
     public static void salvaKartSuFile(Kart nuovoKart, String filePath) {
         Gson gson = new GsonBuilder()
@@ -163,7 +169,21 @@ public abstract class Kart {
         if (karts == null) {
             karts = new ArrayList<>();
         }
-        karts.add(nuovoKart);
+        
+        // Controlla se il nuovo kart è già presente nella lista
+        boolean kartPresente = false;
+        for (Kart kart : karts) {
+            if (kart.getNumeroSeriale() == nuovoKart.getNumeroSeriale()) {
+                kartPresente = true;
+                break;
+            }
+        }
+        
+        // Se il kart non è già presente, aggiungilo alla lista
+        if (!kartPresente) {
+            karts.add(nuovoKart);
+        }
+        
         try (FileWriter writer = new FileWriter(filePath)) {
             gson.toJson(karts, writer);
         } catch (IOException e) {
@@ -171,6 +191,7 @@ public abstract class Kart {
             e.printStackTrace();
         }
     }
+    
 
     @Override
     public String toString() {

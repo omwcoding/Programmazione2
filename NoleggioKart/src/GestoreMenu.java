@@ -66,15 +66,12 @@ public class GestoreMenu {
                 break;
             
             case 5:
-                System.out.println("Funzionalità da amministratore in costruzione...Tornando al menu principale...\n");
+                System.out.println("Funzionalità da amministratore (WIP)\n");
 
                 //Registra nuovi kart
                 LocalDate dataRegistrazione = LocalDate.now();
                 Kart.creaKartDaTastiera(scanner, dataRegistrazione);
-
-
                 //Rimuovi un kart tra quelli disponibili
-                //Modifica i dati di un kart tra quelli disponibili
                 //Modifica i dati di un cliente tra quelli registrati
                 //Rimuovi un cliente tra quelli registrati
                 //Visualizza l’elenco dei kart disponibili
