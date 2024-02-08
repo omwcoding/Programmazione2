@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
@@ -66,7 +67,12 @@ public class GestoreMenu {
             
             case 5:
                 System.out.println("Funzionalità da amministratore in costruzione...Tornando al menu principale...\n");
-                //Inserisci un kart tra quelli disponibili
+
+                //Registra nuovi kart
+                LocalDate dataRegistrazione = LocalDate.now();
+                Kart.creaKartDaTastiera(scanner, dataRegistrazione);
+
+
                 //Rimuovi un kart tra quelli disponibili
                 //Modifica i dati di un kart tra quelli disponibili
                 //Modifica i dati di un cliente tra quelli registrati

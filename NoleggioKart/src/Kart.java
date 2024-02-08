@@ -1,17 +1,37 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.time.LocalDate;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.StringBuilder;
 
 public abstract class Kart {
+    @SerializedName("tipoKart")
+    private String tipoKart;
     private String marca;
     private int numeroSeriale;
     private String tipoCambio;
     private Noleggio noleggioCorrente;
+    private LocalDate dataRegistrazione;
 
-    public Kart(String marca, int numeroSeriale,  String tipoCambio, Noleggio noleggioCorrente) {
+    public Kart(String marca, int numeroSeriale, String tipoCambio, Noleggio noleggioCorrente, String tipoKart, LocalDate dataRegistrazione) {
         this.marca = marca;
         this.numeroSeriale = numeroSeriale;
         this.tipoCambio = tipoCambio;
-        this.noleggioCorrente = noleggioCorrente; // Added this line
+        this.noleggioCorrente = noleggioCorrente;
+        this.tipoKart = tipoKart;
+        this.dataRegistrazione = dataRegistrazione;
     }
 
     public String getMarca() {
@@ -45,68 +65,123 @@ public abstract class Kart {
     public void setNoleggioCorrente(Noleggio noleggioCorrente) {
         this.noleggioCorrente = noleggioCorrente;
     }
-    
 
+    public static Kart creaKartDaTastiera(Scanner scanner, LocalDate dataRegistrazione) {
+        String filePath = "Kart.json";
 
-    //metodo per registrare un kart da tastiera   
-    public Kart registraKartDaTastiera(Scanner scanner) {
-        do{
-            System.out.println("Inserisci la marca del kart");
-            String marca = scanner.nextLine();
-            if(marca.length() > 0){
-                this.setMarca(marca);
-                break;
+        String marca;
+        int numeroSeriale;
+        String tipoCambio;
+        String tipoKart;
+
+        Kart nuovoKart = null;
+
+        do {
+            System.out.println("Inserisci la marca del kart:");
+            marca = scanner.nextLine().trim();
+        } while (marca.isEmpty());
+
+        do {
+            System.out.println("Inserisci il numero seriale del kart:");
+            while (!scanner.hasNextInt()) {
+                System.out.println("Inserisci un numero seriale valido:");
+                scanner.next();
             }
-            System.out.println("La marca non può essere vuota");
-        }
-        while(true);
-
-        do{
-            System.out.println("Inserisci il numero seriale del kart");
-            int numeroSeriale = scanner.nextInt();
-            if(numeroSeriale > 0){
-                this.setNumeroSeriale(numeroSeriale);
-                break;
-            }
-            System.out.println("Il numero seriale non può essere negativo");
-        }
-        while(true);
-
-        do{
-            System.out.println("Inserisci il tipo di kart (1 per base, 2 per medio, 3 per avanzato)");
-            int tipoKart = scanner.nextInt();
+            numeroSeriale = scanner.nextInt();
             scanner.nextLine();
-            if(tipoKart == 1){
-                this.setTipoCambio("Manuale");
-                return new KartBase(marca, numeroSeriale, tipoCambio, noleggioCorrente);
-            }
-            else if(tipoKart == 2){
-                this.setTipoCambio("Automatico");
-                return new KartMedio(marca, numeroSeriale, tipoCambio, noleggioCorrente);
-            }
-            else if(tipoKart == 3){
-                this.setTipoCambio("Manuale");
-                System.out.println("Inserisci il numero di chilometri percorsi");
-                int contaChilometri = scanner.nextInt();
-                scanner.nextLine();
+        } while (numeroSeriale <= 0);
 
-                return new KartAvanzato(marca, numeroSeriale, contaChilometri, true, noleggioCorrente, tipoCambio);
+        do {
+            System.out.println("Inserisci il tipo di kart (1 per base, 2 per medio, 3 per avanzato):");
+            int tipoKartInput;
+            while (!scanner.hasNextInt()) {
+                System.out.println("Inserisci un numero valido:");
+                scanner.next();
             }
+            tipoKartInput = scanner.nextInt();
+            scanner.nextLine();
+            if (tipoKartInput == 1) {
+                tipoCambio = "Manuale";
+                tipoKart = "Base";
+                nuovoKart = new KartBase(marca, numeroSeriale, tipoCambio, null, tipoKart, dataRegistrazione);
+            } else if (tipoKartInput == 2) {
+                tipoCambio = "Automatico";
+                tipoKart = "Medio";
+                nuovoKart = new KartMedio(marca, numeroSeriale, tipoCambio, null, tipoKart, dataRegistrazione);
+            } else if (tipoKartInput == 3) {
+                tipoCambio = "Manuale";
+                tipoKart = "Avanzato";
+                nuovoKart = creaKartAvanzato(scanner, marca, numeroSeriale, tipoCambio, dataRegistrazione);
+            } else {
+                System.out.println("Tipo di kart non valido. Riprova.");
+            }
+        } while (nuovoKart == null);
+
+        salvaKartSuFile(nuovoKart, filePath);
+
+        return nuovoKart;
+    }
+
+    private static Kart creaKartAvanzato(Scanner scanner, String marca, int numeroSeriale, String tipoCambio, LocalDate dataRegistrazione) {
+        System.out.println("Inserisci il numero di chilometri percorsi:");
+        int contaChilometri;
+        while (!scanner.hasNextInt()) {
+            System.out.println("Inserisci un numero di chilometri valido:");
+            scanner.next();
         }
-        while(true);
+        contaChilometri = scanner.nextInt();
+        scanner.nextLine();
+        return new KartAvanzato(marca, numeroSeriale, contaChilometri, true, null, tipoCambio, tipoCambio, dataRegistrazione);
+    }
+
+    public static List<Kart> leggiKartDaFile(String filePath) {
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(Kart.class, new KartAdapter())
+                .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
+                .create();
+        List<Kart> karts = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            JsonElement jsonElement = JsonParser.parseReader(reader);
+            if (jsonElement.isJsonArray()) {
+                TypeToken<List<Kart>> typeToken = new TypeToken<List<Kart>>(){};
+                karts = gson.fromJson(jsonElement, typeToken.getType());
+            }
+        } catch (IOException e) {
+            System.err.println("Errore durante la lettura del file " + filePath + ": " + e.getMessage());
+            e.printStackTrace();
+        }
+        return karts;
+    }
+
+    public static void salvaKartSuFile(Kart nuovoKart, String filePath) {
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
+                .registerTypeAdapter(Kart.class, new KartAdapter())
+                .setPrettyPrinting()
+                .create();
+        List<Kart> karts = leggiKartDaFile(filePath);
+        if (karts == null) {
+            karts = new ArrayList<>();
+        }
+        karts.add(nuovoKart);
+        try (FileWriter writer = new FileWriter(filePath)) {
+            gson.toJson(karts, writer);
+        } catch (IOException e) {
+            System.out.println("Errore nel salvataggio dei kart nel file " + filePath + ".");
+            e.printStackTrace();
+        }
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Marca: ").append(this.marca).append(" Numero Seriale: ").append(this.numeroSeriale).append(" Tipo cambio: ").append(this.tipoCambio)
-            .append(" Noleggio Corrente: ").append(this.noleggioCorrente).append(" Tipo kart: ").append(this.getClass().getSimpleName())
-            .append(" Freno a disco: ").append(this.getClass().getSimpleName().equals("KartAvanzato") ? ((KartAvanzato)this).isFrenoADisco() : "N/A")
-            .append(" Chilometri percorsi: ").append(this.getClass().getSimpleName().equals("KartAvanzato") ? ((KartAvanzato)this).getContaChilometri() : "N/A");
+                .append(" Noleggio Corrente: ").append(this.noleggioCorrente).append(" Tipo kart: ").append(this.getClass().getSimpleName())
+                .append(" Freno a disco: ").append(this.getClass().getSimpleName().equals("KartAvanzato") ? ((KartAvanzato)this).isFrenoADisco() : "N/A")
+                .append(" Chilometri percorsi: ").append(this.getClass().getSimpleName().equals("KartAvanzato") ? ((KartAvanzato)this).getContaChilometri() : "N/A")
+                .append(" Data registrazione: ").append(this.dataRegistrazione); // Aggiungi la data di registrazione
         return sb.toString();
     }
 
     public abstract double calcolaCostoNoleggio();
-   
 }
-

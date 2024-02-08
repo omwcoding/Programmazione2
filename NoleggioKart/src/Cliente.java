@@ -135,9 +135,6 @@ public class Cliente implements Serializable{
     
         return new Cliente(nome, cognome, numeroMassimoKart, codiceFiscale, indirizzo, telefono);
     }
-    
-    
-    
 
     @Override
     public String toString() {

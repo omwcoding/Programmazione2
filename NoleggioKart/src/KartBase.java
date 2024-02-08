@@ -1,6 +1,8 @@
+import java.time.LocalDate;
+
 public class KartBase extends Kart {
-    public KartBase(String marca, int numeroSeriale, String tipoCambio, Noleggio noleggioCorrente) {
-        super(marca, numeroSeriale, "Manuale", noleggioCorrente);
+    public KartBase(String marca, int numeroSeriale, String tipoCambio, Noleggio noleggioCorrente, String tipoKart, LocalDate dataRegistrazione) {
+        super(marca, numeroSeriale, "Manuale", noleggioCorrente, tipoKart, dataRegistrazione); // Aggiornato il costruttore per includere tipoKart
         // eventuali inizializzazioni aggiuntive
     }
     
